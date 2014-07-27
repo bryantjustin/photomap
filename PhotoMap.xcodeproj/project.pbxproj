@@ -1,0 +1,602 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1451D6861983EA03003380BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1451D6851983EA03003380BC /* Foundation.framework */; };
+		1451D6881983EA03003380BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1451D6871983EA03003380BC /* CoreGraphics.framework */; };
+		1451D68A1983EA03003380BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1451D6891983EA03003380BC /* UIKit.framework */; };
+		1451D6901983EA03003380BC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1451D68E1983EA03003380BC /* InfoPlist.strings */; };
+		1451D6921983EA03003380BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451D6911983EA03003380BC /* main.m */; };
+		1451D6A11983EA03003380BC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1451D6A01983EA03003380BC /* Images.xcassets */; };
+		1451D6A81983EA03003380BC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1451D6A71983EA03003380BC /* XCTest.framework */; };
+		1451D6A91983EA03003380BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1451D6851983EA03003380BC /* Foundation.framework */; };
+		1451D6AA1983EA03003380BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1451D6891983EA03003380BC /* UIKit.framework */; };
+		1451D6B21983EA03003380BC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1451D6B01983EA03003380BC /* InfoPlist.strings */; };
+		1451D6B41983EA03003380BC /* PhotoMapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451D6B31983EA03003380BC /* PhotoMapTests.m */; };
+		1451D6C51983EE99003380BC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451D6BF1983EE99003380BC /* AppDelegate.m */; };
+		1451D6CB1983FBAC003380BC /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451D6C91983FBAC003380BC /* RootViewController.m */; };
+		1451D6CC1983FBAC003380BC /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1451D6CA1983FBAC003380BC /* RootViewController.xib */; };
+		1451D6D01983FCF0003380BC /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451D6CE1983FCF0003380BC /* FeedViewController.m */; };
+		1451D6D11983FCF0003380BC /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1451D6CF1983FCF0003380BC /* FeedViewController.xib */; };
+		1451D6DD1983FD2F003380BC /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451D6DB1983FD2F003380BC /* MapViewController.m */; };
+		1451D6DE1983FD2F003380BC /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1451D6DC1983FD2F003380BC /* MapViewController.xib */; };
+		1451D6E21983FD45003380BC /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451D6E01983FD45003380BC /* ProfileViewController.m */; };
+		1451D6E31983FD45003380BC /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1451D6E11983FD45003380BC /* ProfileViewController.xib */; };
+		1451D6EA19840E3A003380BC /* InstagramService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451D6E919840E3A003380BC /* InstagramService.m */; };
+		1451D6F0198423BE003380BC /* OAuthPromptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451D6EE198423BE003380BC /* OAuthPromptViewController.m */; };
+		1451D6F1198423BE003380BC /* OAuthPromptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1451D6EF198423BE003380BC /* OAuthPromptViewController.xib */; };
+		1451D6F419850938003380BC /* InstagramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451D6F319850938003380BC /* InstagramManager.m */; };
+		8AA928A169FC4761833C25EA /* libPods-PhotoMap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16BD59BB887542098D352D45 /* libPods-PhotoMap.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1451D6AB1983EA03003380BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1451D67A1983EA03003380BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1451D6811983EA03003380BC;
+			remoteInfo = PhotoMap;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1451D6821983EA03003380BC /* PhotoMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1451D6851983EA03003380BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1451D6871983EA03003380BC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1451D6891983EA03003380BC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1451D68D1983EA03003380BC /* PhotoMap-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PhotoMap-Info.plist"; sourceTree = "<group>"; };
+		1451D68F1983EA03003380BC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1451D6911983EA03003380BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1451D6931983EA03003380BC /* PhotoMap-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PhotoMap-Prefix.pch"; sourceTree = "<group>"; };
+		1451D6A01983EA03003380BC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		1451D6A61983EA03003380BC /* PhotoMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1451D6A71983EA03003380BC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		1451D6AF1983EA03003380BC /* PhotoMapTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PhotoMapTests-Info.plist"; sourceTree = "<group>"; };
+		1451D6B11983EA03003380BC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1451D6B31983EA03003380BC /* PhotoMapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoMapTests.m; sourceTree = "<group>"; };
+		1451D6BE1983EE99003380BC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1451D6BF1983EE99003380BC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1451D6C81983FBAC003380BC /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		1451D6C91983FBAC003380BC /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		1451D6CA1983FBAC003380BC /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		1451D6CD1983FCF0003380BC /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
+		1451D6CE1983FCF0003380BC /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
+		1451D6CF1983FCF0003380BC /* FeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedViewController.xib; sourceTree = "<group>"; };
+		1451D6DA1983FD2F003380BC /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		1451D6DB1983FD2F003380BC /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		1451D6DC1983FD2F003380BC /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		1451D6DF1983FD45003380BC /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		1451D6E01983FD45003380BC /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		1451D6E11983FD45003380BC /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		1451D6E819840E3A003380BC /* InstagramService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstagramService.h; path = Services/InstagramService.h; sourceTree = "<group>"; };
+		1451D6E919840E3A003380BC /* InstagramService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstagramService.m; path = Services/InstagramService.m; sourceTree = "<group>"; };
+		1451D6EB1984232F003380BC /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		1451D6ED198423BE003380BC /* OAuthPromptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthPromptViewController.h; path = Modals/OAuthPromptViewController.h; sourceTree = "<group>"; };
+		1451D6EE198423BE003380BC /* OAuthPromptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAuthPromptViewController.m; path = Modals/OAuthPromptViewController.m; sourceTree = "<group>"; };
+		1451D6EF198423BE003380BC /* OAuthPromptViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OAuthPromptViewController.xib; path = Modals/OAuthPromptViewController.xib; sourceTree = "<group>"; };
+		1451D6F219850938003380BC /* InstagramManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstagramManager.h; path = Managers/InstagramManager.h; sourceTree = "<group>"; };
+		1451D6F319850938003380BC /* InstagramManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstagramManager.m; path = Managers/InstagramManager.m; sourceTree = "<group>"; };
+		16BD59BB887542098D352D45 /* libPods-PhotoMap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PhotoMap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED12EAD1DEB24302A22DD24E /* Pods-PhotoMap.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap.xcconfig"; path = "Pods/Pods-PhotoMap.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1451D67F1983EA03003380BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1451D6881983EA03003380BC /* CoreGraphics.framework in Frameworks */,
+				1451D68A1983EA03003380BC /* UIKit.framework in Frameworks */,
+				1451D6861983EA03003380BC /* Foundation.framework in Frameworks */,
+				8AA928A169FC4761833C25EA /* libPods-PhotoMap.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1451D6A31983EA03003380BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1451D6A81983EA03003380BC /* XCTest.framework in Frameworks */,
+				1451D6AA1983EA03003380BC /* UIKit.framework in Frameworks */,
+				1451D6A91983EA03003380BC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1451D6791983EA03003380BC = {
+			isa = PBXGroup;
+			children = (
+				1451D68B1983EA03003380BC /* Application */,
+				1451D6AD1983EA03003380BC /* PhotoMapTests */,
+				1451D6841983EA03003380BC /* Frameworks */,
+				1451D6831983EA03003380BC /* Products */,
+				ED12EAD1DEB24302A22DD24E /* Pods-PhotoMap.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		1451D6831983EA03003380BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1451D6821983EA03003380BC /* PhotoMap.app */,
+				1451D6A61983EA03003380BC /* PhotoMapTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1451D6841983EA03003380BC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1451D6851983EA03003380BC /* Foundation.framework */,
+				1451D6871983EA03003380BC /* CoreGraphics.framework */,
+				1451D6891983EA03003380BC /* UIKit.framework */,
+				1451D6A71983EA03003380BC /* XCTest.framework */,
+				16BD59BB887542098D352D45 /* libPods-PhotoMap.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1451D68B1983EA03003380BC /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				1451D6BD1983EE99003380BC /* Classes */,
+				1451D68C1983EA03003380BC /* Supporting Files */,
+				1451D6A01983EA03003380BC /* Images.xcassets */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		1451D68C1983EA03003380BC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1451D68D1983EA03003380BC /* PhotoMap-Info.plist */,
+				1451D68E1983EA03003380BC /* InfoPlist.strings */,
+				1451D6911983EA03003380BC /* main.m */,
+				1451D6931983EA03003380BC /* PhotoMap-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1451D6AD1983EA03003380BC /* PhotoMapTests */ = {
+			isa = PBXGroup;
+			children = (
+				1451D6B31983EA03003380BC /* PhotoMapTests.m */,
+				1451D6AE1983EA03003380BC /* Supporting Files */,
+			);
+			path = PhotoMapTests;
+			sourceTree = "<group>";
+		};
+		1451D6AE1983EA03003380BC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1451D6AF1983EA03003380BC /* PhotoMapTests-Info.plist */,
+				1451D6B01983EA03003380BC /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1451D6BD1983EE99003380BC /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1451D6BE1983EE99003380BC /* AppDelegate.h */,
+				1451D6BF1983EE99003380BC /* AppDelegate.m */,
+				1451D6E719840E18003380BC /* Managers */,
+				1451D6E619840E14003380BC /* Services */,
+				1451D6C01983EE99003380BC /* View Controllers */,
+				1451D6EB1984232F003380BC /* Config.h */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		1451D6C01983EE99003380BC /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1451D6EC19842378003380BC /* Modals */,
+				1451D6C81983FBAC003380BC /* RootViewController.h */,
+				1451D6C91983FBAC003380BC /* RootViewController.m */,
+				1451D6CA1983FBAC003380BC /* RootViewController.xib */,
+				1451D6CD1983FCF0003380BC /* FeedViewController.h */,
+				1451D6CE1983FCF0003380BC /* FeedViewController.m */,
+				1451D6CF1983FCF0003380BC /* FeedViewController.xib */,
+				1451D6DA1983FD2F003380BC /* MapViewController.h */,
+				1451D6DB1983FD2F003380BC /* MapViewController.m */,
+				1451D6DC1983FD2F003380BC /* MapViewController.xib */,
+				1451D6DF1983FD45003380BC /* ProfileViewController.h */,
+				1451D6E01983FD45003380BC /* ProfileViewController.m */,
+				1451D6E11983FD45003380BC /* ProfileViewController.xib */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		1451D6E619840E14003380BC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1451D6E819840E3A003380BC /* InstagramService.h */,
+				1451D6E919840E3A003380BC /* InstagramService.m */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		1451D6E719840E18003380BC /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				1451D6F219850938003380BC /* InstagramManager.h */,
+				1451D6F319850938003380BC /* InstagramManager.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		1451D6EC19842378003380BC /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+				1451D6ED198423BE003380BC /* OAuthPromptViewController.h */,
+				1451D6EE198423BE003380BC /* OAuthPromptViewController.m */,
+				1451D6EF198423BE003380BC /* OAuthPromptViewController.xib */,
+			);
+			name = Modals;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1451D6811983EA03003380BC /* PhotoMap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1451D6B71983EA03003380BC /* Build configuration list for PBXNativeTarget "PhotoMap" */;
+			buildPhases = (
+				546FDBD854E546E98A0D8BAE /* Check Pods Manifest.lock */,
+				1451D67E1983EA03003380BC /* Sources */,
+				1451D67F1983EA03003380BC /* Frameworks */,
+				1451D6801983EA03003380BC /* Resources */,
+				1D9789E7C2AF4ABF9A8809FE /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PhotoMap;
+			productName = PhotoMap;
+			productReference = 1451D6821983EA03003380BC /* PhotoMap.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1451D6A51983EA03003380BC /* PhotoMapTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1451D6BA1983EA03003380BC /* Build configuration list for PBXNativeTarget "PhotoMapTests" */;
+			buildPhases = (
+				1451D6A21983EA03003380BC /* Sources */,
+				1451D6A31983EA03003380BC /* Frameworks */,
+				1451D6A41983EA03003380BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1451D6AC1983EA03003380BC /* PBXTargetDependency */,
+			);
+			name = PhotoMapTests;
+			productName = PhotoMapTests;
+			productReference = 1451D6A61983EA03003380BC /* PhotoMapTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1451D67A1983EA03003380BC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = bryantjustin.com;
+				TargetAttributes = {
+					1451D6A51983EA03003380BC = {
+						TestTargetID = 1451D6811983EA03003380BC;
+					};
+				};
+			};
+			buildConfigurationList = 1451D67D1983EA03003380BC /* Build configuration list for PBXProject "PhotoMap" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1451D6791983EA03003380BC;
+			productRefGroup = 1451D6831983EA03003380BC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1451D6811983EA03003380BC /* PhotoMap */,
+				1451D6A51983EA03003380BC /* PhotoMapTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1451D6801983EA03003380BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1451D6F1198423BE003380BC /* OAuthPromptViewController.xib in Resources */,
+				1451D6E31983FD45003380BC /* ProfileViewController.xib in Resources */,
+				1451D6A11983EA03003380BC /* Images.xcassets in Resources */,
+				1451D6DE1983FD2F003380BC /* MapViewController.xib in Resources */,
+				1451D6901983EA03003380BC /* InfoPlist.strings in Resources */,
+				1451D6D11983FCF0003380BC /* FeedViewController.xib in Resources */,
+				1451D6CC1983FBAC003380BC /* RootViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1451D6A41983EA03003380BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1451D6B21983EA03003380BC /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1D9789E7C2AF4ABF9A8809FE /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-PhotoMap-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		546FDBD854E546E98A0D8BAE /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1451D67E1983EA03003380BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1451D6F0198423BE003380BC /* OAuthPromptViewController.m in Sources */,
+				1451D6EA19840E3A003380BC /* InstagramService.m in Sources */,
+				1451D6C51983EE99003380BC /* AppDelegate.m in Sources */,
+				1451D6921983EA03003380BC /* main.m in Sources */,
+				1451D6D01983FCF0003380BC /* FeedViewController.m in Sources */,
+				1451D6F419850938003380BC /* InstagramManager.m in Sources */,
+				1451D6DD1983FD2F003380BC /* MapViewController.m in Sources */,
+				1451D6E21983FD45003380BC /* ProfileViewController.m in Sources */,
+				1451D6CB1983FBAC003380BC /* RootViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1451D6A21983EA03003380BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1451D6B41983EA03003380BC /* PhotoMapTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1451D6AC1983EA03003380BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1451D6811983EA03003380BC /* PhotoMap */;
+			targetProxy = 1451D6AB1983EA03003380BC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1451D68E1983EA03003380BC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1451D68F1983EA03003380BC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1451D6B01983EA03003380BC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1451D6B11983EA03003380BC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1451D6B51983EA03003380BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1451D6B61983EA03003380BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1451D6B81983EA03003380BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED12EAD1DEB24302A22DD24E /* Pods-PhotoMap.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Application/PhotoMap-Prefix.pch";
+				INFOPLIST_FILE = "Application/PhotoMap-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1451D6B91983EA03003380BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED12EAD1DEB24302A22DD24E /* Pods-PhotoMap.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Application/PhotoMap-Prefix.pch";
+				INFOPLIST_FILE = "Application/PhotoMap-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		1451D6BB1983EA03003380BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PhotoMap.app/PhotoMap";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhotoMap/PhotoMap-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "PhotoMapTests/PhotoMapTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		1451D6BC1983EA03003380BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PhotoMap.app/PhotoMap";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhotoMap/PhotoMap-Prefix.pch";
+				INFOPLIST_FILE = "PhotoMapTests/PhotoMapTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1451D67D1983EA03003380BC /* Build configuration list for PBXProject "PhotoMap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1451D6B51983EA03003380BC /* Debug */,
+				1451D6B61983EA03003380BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1451D6B71983EA03003380BC /* Build configuration list for PBXNativeTarget "PhotoMap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1451D6B81983EA03003380BC /* Debug */,
+				1451D6B91983EA03003380BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1451D6BA1983EA03003380BC /* Build configuration list for PBXNativeTarget "PhotoMapTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1451D6BB1983EA03003380BC /* Debug */,
+				1451D6BC1983EA03003380BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1451D67A1983EA03003380BC /* Project object */;
+}
