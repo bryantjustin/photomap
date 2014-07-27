@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="InstagramComment" representedClassName="InstagramComment" syncable="YES">
+        <attribute name="createDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="InstagramUser" inverseName="comments" inverseEntity="InstagramUser" syncable="YES"/>
+    </entity>
+    <entity name="InstagramMedia" representedClassName="InstagramMedia" syncable="YES">
+        <attribute name="createdDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isVideo" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longtitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lowResolutionImageRectSize" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lowResolutionImageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lowResolutionVideoRectSize" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lowResolutionVideoURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="standardResolutionImageRectSize" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="standardResolutionImageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="standardResolutionVideoRectSize" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="standardResolutionVideoURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnailURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnailURLRectSize" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="caption" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="InstagramComment" syncable="YES"/>
+        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InstagramComment" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="InstagramUser" inverseName="media" inverseEntity="InstagramUser" syncable="YES"/>
+    </entity>
+    <entity name="InstagramUser" representedClassName="InstagramUser" syncable="YES">
+        <attribute name="bio" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="followedByCounts" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="followsCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="fullName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isSelf" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="mediaCounts" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="profilePictureURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="websiteURL" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InstagramComment" inverseName="user" inverseEntity="InstagramComment" syncable="YES"/>
+        <relationship name="media" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InstagramMedia" inverseName="user" inverseEntity="InstagramMedia" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="InstagramUser" positionX="-369" positionY="-36" width="128" height="223"/>
+        <element name="InstagramMedia" positionX="-20" positionY="27" width="128" height="328"/>
+        <element name="InstagramComment" positionX="-207" positionY="-36" width="128" height="103"/>
+    </elements>
+</model>
