@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1ACF67CEC4D543EBB29EE933"
-               BuildableName = "libPods-PhotoMap-SSKeychain.a"
-               BlueprintName = "Pods-PhotoMap-SSKeychain"
+               BlueprintIdentifier = "763ACD08630D4946A9B3E7E2"
+               BuildableName = "libPods-PhotoMap-FXKeychain.a"
+               BlueprintName = "Pods-PhotoMap-FXKeychain"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (HEAD based on 2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - FXKeychain (HEAD based on 1.5.1)
   - libextobjc (0.4):
     - libextobjc/EXTADT
     - libextobjc/EXTConcreteProtocol
@@ -55,16 +56,15 @@ PODS:
     - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.4)
   - libextobjc/UmbrellaHeader (0.4)
-  - SSKeychain (HEAD based on 1.2.2)
 
 DEPENDENCIES:
   - AFNetworking (HEAD)
+  - FXKeychain (HEAD)
   - libextobjc
-  - SSKeychain (HEAD)
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
+  FXKeychain: beb642a4218ba783507af08865eda05e9b26a612
   libextobjc: ba42e4111f433273a886cd54f0ddaddb7f62f82f
-  SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
 
 COCOAPODS: 0.33.1

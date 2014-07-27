@@ -30,7 +30,8 @@
 		1451D6EA19840E3A003380BC /* InstagramService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451D6E919840E3A003380BC /* InstagramService.m */; };
 		1451D6F0198423BE003380BC /* OAuthPromptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451D6EE198423BE003380BC /* OAuthPromptViewController.m */; };
 		1451D6F1198423BE003380BC /* OAuthPromptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1451D6EF198423BE003380BC /* OAuthPromptViewController.xib */; };
-		1451D6F419850938003380BC /* InstagramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451D6F319850938003380BC /* InstagramManager.m */; };
+		145A00A9198539E4000E1B11 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A00A8198539E4000E1B11 /* UserModel.m */; };
+		145A00AA19853F21000E1B11 /* KeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A00A4198533C7000E1B11 /* KeychainManager.m */; };
 		8AA928A169FC4761833C25EA /* libPods-PhotoMap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16BD59BB887542098D352D45 /* libPods-PhotoMap.a */; };
 /* End PBXBuildFile section */
 
@@ -79,8 +80,10 @@
 		1451D6ED198423BE003380BC /* OAuthPromptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthPromptViewController.h; path = Modals/OAuthPromptViewController.h; sourceTree = "<group>"; };
 		1451D6EE198423BE003380BC /* OAuthPromptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAuthPromptViewController.m; path = Modals/OAuthPromptViewController.m; sourceTree = "<group>"; };
 		1451D6EF198423BE003380BC /* OAuthPromptViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OAuthPromptViewController.xib; path = Modals/OAuthPromptViewController.xib; sourceTree = "<group>"; };
-		1451D6F219850938003380BC /* InstagramManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstagramManager.h; path = Managers/InstagramManager.h; sourceTree = "<group>"; };
-		1451D6F319850938003380BC /* InstagramManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstagramManager.m; path = Managers/InstagramManager.m; sourceTree = "<group>"; };
+		145A00A3198533C7000E1B11 /* KeychainManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeychainManager.h; path = Managers/KeychainManager.h; sourceTree = "<group>"; };
+		145A00A4198533C7000E1B11 /* KeychainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeychainManager.m; path = Managers/KeychainManager.m; sourceTree = "<group>"; };
+		145A00A7198539E4000E1B11 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserModel.h; path = Models/UserModel.h; sourceTree = "<group>"; };
+		145A00A8198539E4000E1B11 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserModel.m; path = Models/UserModel.m; sourceTree = "<group>"; };
 		16BD59BB887542098D352D45 /* libPods-PhotoMap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PhotoMap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED12EAD1DEB24302A22DD24E /* Pods-PhotoMap.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap.xcconfig"; path = "Pods/Pods-PhotoMap.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,10 +189,11 @@
 			children = (
 				1451D6BE1983EE99003380BC /* AppDelegate.h */,
 				1451D6BF1983EE99003380BC /* AppDelegate.m */,
+				1451D6EB1984232F003380BC /* Config.h */,
 				1451D6E719840E18003380BC /* Managers */,
+				145A00A61985363C000E1B11 /* Models */,
 				1451D6E619840E14003380BC /* Services */,
 				1451D6C01983EE99003380BC /* View Controllers */,
-				1451D6EB1984232F003380BC /* Config.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -226,8 +230,8 @@
 		1451D6E719840E18003380BC /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				1451D6F219850938003380BC /* InstagramManager.h */,
-				1451D6F319850938003380BC /* InstagramManager.m */,
+				145A00A3198533C7000E1B11 /* KeychainManager.h */,
+				145A00A4198533C7000E1B11 /* KeychainManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -240,6 +244,15 @@
 				1451D6EF198423BE003380BC /* OAuthPromptViewController.xib */,
 			);
 			name = Modals;
+			sourceTree = "<group>";
+		};
+		145A00A61985363C000E1B11 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				145A00A7198539E4000E1B11 /* UserModel.h */,
+				145A00A8198539E4000E1B11 /* UserModel.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,12 +391,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145A00AA19853F21000E1B11 /* KeychainManager.m in Sources */,
 				1451D6F0198423BE003380BC /* OAuthPromptViewController.m in Sources */,
 				1451D6EA19840E3A003380BC /* InstagramService.m in Sources */,
 				1451D6C51983EE99003380BC /* AppDelegate.m in Sources */,
 				1451D6921983EA03003380BC /* main.m in Sources */,
 				1451D6D01983FCF0003380BC /* FeedViewController.m in Sources */,
-				1451D6F419850938003380BC /* InstagramManager.m in Sources */,
+				145A00A9198539E4000E1B11 /* UserModel.m in Sources */,
 				1451D6DD1983FD2F003380BC /* MapViewController.m in Sources */,
 				1451D6E21983FD45003380BC /* ProfileViewController.m in Sources */,
 				1451D6CB1983FBAC003380BC /* RootViewController.m in Sources */,

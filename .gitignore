@@ -6,3 +6,13 @@
 #
 # Pods/
 
+
+*.xcbkptlist
+
+*.xcuserstate
+
+photomap.xcworkspace/xcuserdata/bryantbalatbat.xcuserdatad/WorkspaceSettings.xcsettings
+
+photomap.xcworkspace/xcuserdata/bryantbalatbat.xcuserdatad/UserInterfaceState.xcuserstate
+
+photomap.xcworkspace/xcuserdata/bryantbalatbat.xcuserdatad/UserInterfaceState.xcuserstate

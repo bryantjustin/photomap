@@ -9,7 +9,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-PhotoMap-SSKeychain.xcscheme</key>
+		<key>Pods-PhotoMap-FXKeychain.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1ACF67CEC4D543EBB29EE933</key>
+		<key>20A779DC24F24222B5D71895</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3AA8D7A505704030B5CDAF4A</key>
+		<key>4C1ACE533FED42DF8965D886</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C73185BB6E024B2A90D7F613</key>
+		<key>763ACD08630D4946A9B3E7E2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D55A12DD6D5949BEA881E182</key>
+		<key>93A06AF564D049F2B99EFA4F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -48,11 +48,11 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 3
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 1
 
-// SSKeychain
-#define COCOAPODS_POD_AVAILABLE_SSKeychain
-#define COCOAPODS_VERSION_MAJOR_SSKeychain 1
-#define COCOAPODS_VERSION_MINOR_SSKeychain 2
-#define COCOAPODS_VERSION_PATCH_SSKeychain 2
+// FXKeychain
+#define COCOAPODS_POD_AVAILABLE_FXKeychain
+#define COCOAPODS_VERSION_MAJOR_FXKeychain 1
+#define COCOAPODS_VERSION_MINOR_FXKeychain 5
+#define COCOAPODS_VERSION_PATCH_FXKeychain 1
 
 // libextobjc
 #define COCOAPODS_POD_AVAILABLE_libextobjc
