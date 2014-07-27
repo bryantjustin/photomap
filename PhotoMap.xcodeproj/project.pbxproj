@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		142C00C41985776B000BFEB8 /* InstagramPaginationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C00C31985776B000BFEB8 /* InstagramPaginationModel.m */; };
 		1451D6861983EA03003380BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1451D6851983EA03003380BC /* Foundation.framework */; };
 		1451D6881983EA03003380BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1451D6871983EA03003380BC /* CoreGraphics.framework */; };
 		1451D68A1983EA03003380BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1451D6891983EA03003380BC /* UIKit.framework */; };
@@ -32,6 +33,12 @@
 		1451D6F1198423BE003380BC /* OAuthPromptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1451D6EF198423BE003380BC /* OAuthPromptViewController.xib */; };
 		145A00A9198539E4000E1B11 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A00A8198539E4000E1B11 /* UserModel.m */; };
 		145A00AA19853F21000E1B11 /* KeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A00A4198533C7000E1B11 /* KeychainManager.m */; };
+		14FFD48919859EC600A57FC6 /* InstagramModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FFD48819859EC600A57FC6 /* InstagramModel.m */; };
+		14FFD48D1985A1D900A57FC6 /* PhotoMapModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14FFD48B1985A1D900A57FC6 /* PhotoMapModel.xcdatamodeld */; };
+		14FFD4901985B0C500A57FC6 /* InstagramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FFD48F1985B0C500A57FC6 /* InstagramManager.m */; };
+		14FFD4931985B0FB00A57FC6 /* InstagramComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FFD4921985B0FB00A57FC6 /* InstagramComment.m */; };
+		14FFD4961985B0FB00A57FC6 /* InstagramUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FFD4951985B0FB00A57FC6 /* InstagramUser.m */; };
+		14FFD4991985B0FC00A57FC6 /* InstagramMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FFD4981985B0FC00A57FC6 /* InstagramMedia.m */; };
 		8AA928A169FC4761833C25EA /* libPods-PhotoMap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16BD59BB887542098D352D45 /* libPods-PhotoMap.a */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +53,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		142C00C21985776B000BFEB8 /* InstagramPaginationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstagramPaginationModel.h; path = Models/Instagram/InstagramPaginationModel.h; sourceTree = "<group>"; };
+		142C00C31985776B000BFEB8 /* InstagramPaginationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstagramPaginationModel.m; path = Models/Instagram/InstagramPaginationModel.m; sourceTree = "<group>"; };
 		1451D6821983EA03003380BC /* PhotoMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1451D6851983EA03003380BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1451D6871983EA03003380BC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -84,6 +93,17 @@
 		145A00A4198533C7000E1B11 /* KeychainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeychainManager.m; path = Managers/KeychainManager.m; sourceTree = "<group>"; };
 		145A00A7198539E4000E1B11 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserModel.h; path = Models/UserModel.h; sourceTree = "<group>"; };
 		145A00A8198539E4000E1B11 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserModel.m; path = Models/UserModel.m; sourceTree = "<group>"; };
+		14FFD48719859EC600A57FC6 /* InstagramModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstagramModel.h; path = Models/Instagram/InstagramModel.h; sourceTree = "<group>"; };
+		14FFD48819859EC600A57FC6 /* InstagramModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstagramModel.m; path = Models/Instagram/InstagramModel.m; sourceTree = "<group>"; };
+		14FFD48C1985A1D900A57FC6 /* PhotoMapModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PhotoMapModel.xcdatamodel; sourceTree = "<group>"; };
+		14FFD48E1985B0C500A57FC6 /* InstagramManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstagramManager.h; path = Managers/InstagramManager.h; sourceTree = "<group>"; };
+		14FFD48F1985B0C500A57FC6 /* InstagramManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstagramManager.m; path = Managers/InstagramManager.m; sourceTree = "<group>"; };
+		14FFD4911985B0FB00A57FC6 /* InstagramComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstagramComment.h; path = Classes/Entities/InstagramComment.h; sourceTree = "<group>"; };
+		14FFD4921985B0FB00A57FC6 /* InstagramComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstagramComment.m; path = Classes/Entities/InstagramComment.m; sourceTree = "<group>"; };
+		14FFD4941985B0FB00A57FC6 /* InstagramUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstagramUser.h; path = Classes/Entities/InstagramUser.h; sourceTree = "<group>"; };
+		14FFD4951985B0FB00A57FC6 /* InstagramUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstagramUser.m; path = Classes/Entities/InstagramUser.m; sourceTree = "<group>"; };
+		14FFD4971985B0FC00A57FC6 /* InstagramMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstagramMedia.h; path = Classes/Entities/InstagramMedia.h; sourceTree = "<group>"; };
+		14FFD4981985B0FC00A57FC6 /* InstagramMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstagramMedia.m; path = Classes/Entities/InstagramMedia.m; sourceTree = "<group>"; };
 		16BD59BB887542098D352D45 /* libPods-PhotoMap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PhotoMap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED12EAD1DEB24302A22DD24E /* Pods-PhotoMap.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap.xcconfig"; path = "Pods/Pods-PhotoMap.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,6 +133,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		142C00C119857734000BFEB8 /* Instagram */ = {
+			isa = PBXGroup;
+			children = (
+				142C00C21985776B000BFEB8 /* InstagramPaginationModel.h */,
+				142C00C31985776B000BFEB8 /* InstagramPaginationModel.m */,
+				14FFD48719859EC600A57FC6 /* InstagramModel.h */,
+				14FFD48819859EC600A57FC6 /* InstagramModel.m */,
+			);
+			name = Instagram;
+			sourceTree = "<group>";
+		};
 		1451D6791983EA03003380BC = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				1451D6BD1983EE99003380BC /* Classes */,
+				14FFD48A1985A19B00A57FC6 /* Resources */,
 				1451D68C1983EA03003380BC /* Supporting Files */,
 				1451D6A01983EA03003380BC /* Images.xcassets */,
 			);
@@ -232,6 +264,8 @@
 			children = (
 				145A00A3198533C7000E1B11 /* KeychainManager.h */,
 				145A00A4198533C7000E1B11 /* KeychainManager.m */,
+				14FFD48E1985B0C500A57FC6 /* InstagramManager.h */,
+				14FFD48F1985B0C500A57FC6 /* InstagramManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -249,10 +283,25 @@
 		145A00A61985363C000E1B11 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				142C00C119857734000BFEB8 /* Instagram */,
 				145A00A7198539E4000E1B11 /* UserModel.h */,
 				145A00A8198539E4000E1B11 /* UserModel.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		14FFD48A1985A19B00A57FC6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				14FFD48B1985A1D900A57FC6 /* PhotoMapModel.xcdatamodeld */,
+				14FFD4971985B0FC00A57FC6 /* InstagramMedia.h */,
+				14FFD4981985B0FC00A57FC6 /* InstagramMedia.m */,
+				14FFD4941985B0FB00A57FC6 /* InstagramUser.h */,
+				14FFD4951985B0FB00A57FC6 /* InstagramUser.m */,
+				14FFD4911985B0FB00A57FC6 /* InstagramComment.h */,
+				14FFD4921985B0FB00A57FC6 /* InstagramComment.m */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,12 +444,19 @@
 				1451D6F0198423BE003380BC /* OAuthPromptViewController.m in Sources */,
 				1451D6EA19840E3A003380BC /* InstagramService.m in Sources */,
 				1451D6C51983EE99003380BC /* AppDelegate.m in Sources */,
+				14FFD4931985B0FB00A57FC6 /* InstagramComment.m in Sources */,
 				1451D6921983EA03003380BC /* main.m in Sources */,
 				1451D6D01983FCF0003380BC /* FeedViewController.m in Sources */,
+				14FFD48919859EC600A57FC6 /* InstagramModel.m in Sources */,
 				145A00A9198539E4000E1B11 /* UserModel.m in Sources */,
 				1451D6DD1983FD2F003380BC /* MapViewController.m in Sources */,
 				1451D6E21983FD45003380BC /* ProfileViewController.m in Sources */,
+				14FFD4901985B0C500A57FC6 /* InstagramManager.m in Sources */,
 				1451D6CB1983FBAC003380BC /* RootViewController.m in Sources */,
+				142C00C41985776B000BFEB8 /* InstagramPaginationModel.m in Sources */,
+				14FFD48D1985A1D900A57FC6 /* PhotoMapModel.xcdatamodeld in Sources */,
+				14FFD4991985B0FC00A57FC6 /* InstagramMedia.m in Sources */,
+				14FFD4961985B0FB00A57FC6 /* InstagramUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,6 +667,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		14FFD48B1985A1D900A57FC6 /* PhotoMapModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14FFD48C1985A1D900A57FC6 /* PhotoMapModel.xcdatamodel */,
+			);
+			currentVersion = 14FFD48C1985A1D900A57FC6 /* PhotoMapModel.xcdatamodel */;
+			name = PhotoMapModel.xcdatamodeld;
+			path = Resources/PhotoMapModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1451D67A1983EA03003380BC /* Project object */;
 }

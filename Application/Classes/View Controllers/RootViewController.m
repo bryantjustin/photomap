@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "FeedViewController.h"
+#import "InstagramService.h"
 #import "OAuthPromptViewController.h"
 #import "MapViewController.h"
 #import "ProfileViewController.h"
@@ -141,28 +142,10 @@
     [self prepareTabBarController];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [self showOAuthPromptIfNecessary];
+    [self startFetchingInitialData];
 }
-
-- (void)showOAuthPromptIfNecessary
-{
-    static BOOL _isAppearingForTheFirstTime = YES;
-    
-    BOOL shouldShowOAuthPrompt = !UserModel.sharedModel.hasAccess
-        && _isAppearingForTheFirstTime;
-    if (shouldShowOAuthPrompt)
-    {
-        [self showOAuthPromptWithAnimation:NO];
-    }
-    
-    if (_isAppearingForTheFirstTime)
-    {
-        _isAppearingForTheFirstTime = NO;
-    }
-}
-
 
 - (void)prepareTabBarController
 {
@@ -170,6 +153,19 @@
     [self.view addSubview:self.tabBarController.view];
     [self.tabBarController didMoveToParentViewController:self];
 }
+
+- (void)startFetchingInitialData
+{
+    if (UserModel.sharedModel.hasAccessToken)
+    {
+        [InstagramService.sharedService getUserDetails];
+    }
+    else
+    {
+        [self showOAuthPromptWithAnimation:NO];
+    }
+}
+
 
 
 /******************************************************************************/

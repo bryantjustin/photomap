@@ -12,13 +12,23 @@
 
 + (instancetype)sharedService;
 
-
-@property (readonly) NSURL *fullAuthenticationURL;
 - (void)login;
 
 - (BOOL)application:(UIApplication *)application
     openURL:(NSURL *)url
     sourceApplication:(NSString *)sourceApplication
     annotation:(id)annotation;
+
+- (void)getUserDetails;
+//WithSuccess:
+//    (void (^)(InstagramUser *userDetail))success
+//    failure:(InstagramFailureBlock)failure
+
+//- (void)getSelfFeedWithSuccess:(InstagramMediaBlock)success
+//    failure:(InstagramFailureBlock)failure;
+//
+//- (void)getSelfFeedWithCount:(NSInteger)count maxId:(NSString *)maxId
+//    success:(InstagramMediaBlock)success
+//    failure:(InstagramFailureBlock)failure;
 
 @end

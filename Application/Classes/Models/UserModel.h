@@ -13,6 +13,6 @@
 + (instancetype)sharedModel;
 
 @property (copy) NSString *accessToken;
-@property (readonly) BOOL hasAccess;
+@property (readonly) BOOL hasAccessToken;
 
 @end

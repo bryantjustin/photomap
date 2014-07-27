@@ -47,7 +47,7 @@
     }
 }
 
-- (BOOL)hasAccess
+- (BOOL)hasAccessToken
 {
     return self.accessToken != nil;
 }

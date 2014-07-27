@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "20A779DC24F24222B5D71895"
+               BlueprintIdentifier = "4FCE70492E8B49CF8FE3225B"
                BuildableName = "libPods-PhotoMap-libextobjc.a"
                BlueprintName = "Pods-PhotoMap-libextobjc"
                ReferencedContainer = "container:Pods.xcodeproj">
