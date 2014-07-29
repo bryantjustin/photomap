@@ -8,9 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^InstagramServiceErrorBlock)                      (NSError *error);
+typedef void (^InstagramServiceDataResponseBlock)               (id dataResponse);
+typedef void (^InstagramServiceDataAndPaginationResponseBlock)  (id dataResponse, id paginationResponse);
+
 @interface InstagramService : NSObject
 
+/**
+ *  Singleton reference.
+ *
+ *  @return InstagramService instance.
+ */
 + (instancetype)sharedService;
+
+@property (copy) NSString *accessToken;
+@property (readonly) BOOL hasAccessToken;
 
 - (void)login;
 
@@ -19,15 +31,20 @@
     sourceApplication:(NSString *)sourceApplication
     annotation:(id)annotation;
 
-- (void)getUserDetails;
+- (void)getSelfUserDetailsWithSuccess:(InstagramServiceDataResponseBlock)success
+    failure:(InstagramServiceErrorBlock)failure;
+
+- (void)getSelfUserFeedWithSuccess:(InstagramServiceDataAndPaginationResponseBlock)success
+    failure:(InstagramServiceErrorBlock)failure;
+
 //WithSuccess:
 //    (void (^)(InstagramUser *userDetail))success
 //    failure:(InstagramFailureBlock)failure
 
-//- (void)getSelfFeedWithSuccess:(InstagramMediaBlock)success
+//- (void)getSelfUserFeedWithSuccess:(InstagramMediaBlock)success
 //    failure:(InstagramFailureBlock)failure;
 //
-//- (void)getSelfFeedWithCount:(NSInteger)count maxId:(NSString *)maxId
+//- (void)getSelfUserFeedWithCount:(NSInteger)count maxId:(NSString *)maxId
 //    success:(InstagramMediaBlock)success
 //    failure:(InstagramFailureBlock)failure;
 

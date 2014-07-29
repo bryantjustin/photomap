@@ -7,13 +7,15 @@
 //
 
 #import "InstagramComment.h"
+#import "InstagramUser.h"
 
 
 @implementation InstagramComment
 
-@dynamic createDate;
+@dynamic createdDate;
 @dynamic id;
 @dynamic text;
+@dynamic type;
 @dynamic user;
 
 @end

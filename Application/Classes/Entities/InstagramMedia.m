@@ -17,20 +17,99 @@
 @dynamic link;
 @dynamic latitude;
 @dynamic longtitude;
-@dynamic isVideo;
-@dynamic thumbnailURL;
-@dynamic lowResolutionImageURL;
-@dynamic standardResolutionImageURL;
-@dynamic lowResolutionVideoURL;
-@dynamic standardResolutionVideoURL;
-@dynamic lowResolutionImageRectSize;
-@dynamic lowResolutionVideoRectSize;
-@dynamic standardResolutionVideoRectSize;
-@dynamic standardResolutionImageRectSize;
-@dynamic thumbnailURLRectSize;
+@dynamic type;
+@dynamic thumbnailURLString;
+@dynamic lowResolutionImageURLString;
+@dynamic standardResolutionImageURLString;
+@dynamic lowResolutionVideoURLString;
+@dynamic standardResolutionVideoURLString;
+@dynamic lowResolutionImageSizeString;
+@dynamic lowResolutionVideoSizeString;
+@dynamic standardResolutionVideoSizeString;
+@dynamic standardResolutionImageSizeString;
+@dynamic thumbnailSizeString;
 @dynamic id;
 @dynamic user;
-@dynamic comments;
 @dynamic caption;
+@dynamic comments;
+
+
+
+/******************************************************************************/
+
+#pragma mark - NSURL from String Methods
+
+/******************************************************************************/
+
+- (NSURL *)thumbnailURL
+{
+    return [NSURL URLWithString:self.thumbnailURLString];
+}
+
+- (NSURL *)lowResolutionImageURL
+{
+    return [NSURL URLWithString:self.lowResolutionImageURLString];
+}
+
+- (NSURL *)lowResolutionVideoURL
+{
+    return [NSURL URLWithString:self.lowResolutionVideoURLString];
+}
+
+- (NSURL *)standardResolutionImageURL
+{
+    return [NSURL URLWithString:self.standardResolutionImageURLString];
+}
+
+- (NSURL *)standardResolutionVideoURL
+{
+    return [NSURL URLWithString:self.standardResolutionVideoURLString];
+}
+
+
+
+/******************************************************************************/
+
+#pragma mark - CGSize from String Methods
+
+/******************************************************************************/
+
+- (CGSize)thumbnailSize
+{
+    return CGSizeFromString(self.thumbnailSizeString);
+}
+
+- (CGSize)lowResolutionImageSize
+{
+    return CGSizeFromString(self.lowResolutionImageSizeString);
+}
+
+- (CGSize)lowResolutionVideoSize
+{
+    return CGSizeFromString(self.lowResolutionVideoSizeString);
+}
+
+- (CGSize)standardResolutionImageSize
+{
+    return CGSizeFromString(self.standardResolutionImageSizeString);
+}
+
+- (CGSize)standardResolutionVideoSize
+{
+    return CGSizeFromString(self.standardResolutionVideoSizeString);
+}
+
+
+
+/******************************************************************************/
+
+#pragma mark - Derive Location Methods
+
+/******************************************************************************/
+
+- (CLLocationCoordinate2D)location
+{
+    return CLLocationCoordinate2DMake(self.latitude.doubleValue, self.longtitude.doubleValue);
+}
 
 @end

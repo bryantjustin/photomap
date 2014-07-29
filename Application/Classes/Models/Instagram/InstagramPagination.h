@@ -1,5 +1,5 @@
 //
-//  UserModel.h
+//  InstagramPagination.h
 //  PhotoMap
 //
 //  Created by Bryant Balatbat on 2014-07-27.
@@ -8,11 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UserModel : NSObject
+@interface InstagramPagination : NSObject
 
-+ (instancetype)sharedModel;
-
-@property (copy) NSString *accessToken;
-@property (readonly) BOOL hasAccessToken;
+@property (nonatomic,strong) NSURL* nextURL;
+@property (nonatomic,copy) NSString *nextMaxId;
 
 @end

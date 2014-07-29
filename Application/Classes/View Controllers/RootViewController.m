@@ -9,11 +9,16 @@
 #import "RootViewController.h"
 
 #import "FeedViewController.h"
-#import "InstagramService.h"
-#import "OAuthPromptViewController.h"
+#import "InstagramManager.h"
+#import "InstagramUser.h"
 #import "MapViewController.h"
+#import "OAuthPromptViewController.h"
 #import "ProfileViewController.h"
-#import "UserModel.h"
+
+static NSString *const MapIcon      = @"map-icon";
+static NSString *const ProfileIcon  = @"profile-icon";
+
+#define IconInsets UIEdgeInsetsMake(5, 0, -5, 0);
 
 
 /******************************************************************************/
@@ -74,10 +79,26 @@
             ]
         ];
         
-        for (UITabBarItem* tabBarItem in _tabBarController.tabBar.items)
+        for (int i = 0; i < _tabBarController.tabBar.items.count; i++)
         {
-            tabBarItem.title = [NSString string];
+            UITabBarItem *tabBarItem    = _tabBarController.tabBar.items[i];
+            tabBarItem.title            = [NSString string];
+            tabBarItem.imageInsets      = IconInsets;
+            switch (i)
+            {
+                case 0:
+                case 1:
+                    tabBarItem.image = [UIImage imageNamed:MapIcon];
+                    break;
+                case 2:
+                    tabBarItem.image = [UIImage imageNamed:ProfileIcon];
+                    break;
+            }
+            
         }
+        
+        _tabBarController.tabBar.translucent    = NO;
+        _tabBarController.tabBar.barTintColor   = DarkGreyColor;
     }
     
     return _tabBarController;
@@ -139,10 +160,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self prepareTabBarController];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
     [self startFetchingInitialData];
 }
@@ -156,14 +176,34 @@
 
 - (void)startFetchingInitialData
 {
-    if (UserModel.sharedModel.hasAccessToken)
-    {
-        [InstagramService.sharedService getUserDetails];
-    }
-    else
+    if (InstagramManager.sharedManager.requiresAccess)
     {
         [self showOAuthPromptWithAnimation:NO];
     }
+    else
+    {
+        [self continueDataInitialization];
+    }
+}
+
+- (void)continueDataInitialization
+{
+    [self prepareTabBarController];
+    
+    [InstagramManager.sharedManager
+        initializeManagerWithCompletion:^(NSError *error)
+        {
+            [InstagramManager.sharedManager
+                getSelfUserFeedWithSuccess:^(NSArray *media, InstagramPagination *pagination)
+                {
+                
+                }
+                failure:^(NSError *error)
+                {
+                }
+            ];
+        }
+    ];
 }
 
 
@@ -197,6 +237,27 @@
         presentViewController:self.oauthPromptViewController
         animated:animation
         completion:nil
+    ];
+    
+    [NSNotificationCenter.defaultCenter
+        addObserverForName:kDidSuccessfullyAuthenticate
+        object:nil
+        queue:nil
+        usingBlock:^(NSNotification *notification)
+        {
+            [self.oauthPromptViewController
+                dismissViewControllerAnimated:YES
+                completion:nil
+            ];
+            
+            [NSNotificationCenter.defaultCenter
+                removeObserver:self
+                name:kDidSuccessfullyAuthenticate
+                object:nil
+            ];
+            
+            [self continueDataInitialization];
+        }
     ];
 }
 

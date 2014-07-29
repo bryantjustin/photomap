@@ -8,6 +8,26 @@
 
 /******************************************************************************/
 
+#pragma mark - Entities
+
+/******************************************************************************/
+
+static NSString *const InstagramUserEntityName     = @"InstagramUser";
+static NSString *const InstagramMediaEntityName    = @"InstagramMedia";
+static NSString *const InstagramCommentEntityName  = @"InstagramComment";
+
+
+
+/******************************************************************************/
+
+#pragma mark - Colors
+
+/******************************************************************************/
+
+#define DarkGreyColor [UIColor colorWithRed:28./255. green:28./255. blue:28./255. alpha:1.]
+
+/******************************************************************************/
+
 #pragma mark - User Default Keys
 
 /******************************************************************************/

@@ -9,7 +9,7 @@
 #import <AFNetworking/AFNetworking.h>
 
 #import "InstagramService.h"
-#import "UserModel.h"
+#import "KeychainManager.h"
 
 static const char *const BackgroundQueueLabel   = "com.bryantjustin.photomap.background-queue";
 
@@ -18,7 +18,8 @@ static NSString *const TokenURL                 = @"https://api.instagram.com/oa
 static NSString *const RedirectURI              = @"photomap://authentication/";
 
 static NSString *const APIBaseURL               = @"https://api.instagram.com/v1/";
-static NSString *const UserDetailEndpoint       = @"users/self";
+static NSString *const SelfUserDetailEndpoint   = @"users/self";
+static NSString *const SelfUserFeedEndpoint         = @"users/self/feed";
 
 static NSString *const ClientID                 = @"75ce3fb35c934fe7b76734f82f54b898";
 static NSString *const ClientSecret             = @"b5ba513838544b8db7465cf51012b615";
@@ -69,7 +70,17 @@ static NSString *const PaginationKey            = @"pagination";
     return instance;
 }
 
-@synthesize fullAuthenticationURL = _fullAuthenticationURL;
+
+
+/******************************************************************************/
+
+#pragma mark - Properties
+
+/******************************************************************************/
+
+@synthesize fullAuthenticationURL   = _fullAuthenticationURL;
+@synthesize accessToken             = _accessToken;
+
 - (NSURL *)fullAuthenticationURL
 {
     if (_fullAuthenticationURL == nil)
@@ -85,6 +96,36 @@ static NSString *const PaginationKey            = @"pagination";
     }
     
     return _fullAuthenticationURL;
+}
+
+- (void)setAccessToken:(NSString *)accessToken
+{
+    @synchronized(self)
+    {
+        [KeychainManager.sharedManager
+            setString:accessToken
+            forKey:InstagramAccessTokenKeychainKey
+        ];
+        
+        _accessToken = accessToken;
+    }
+}
+
+- (NSString *)accessToken
+{
+    @synchronized(self)
+    {
+        if (_accessToken == nil)
+        {
+            _accessToken = [KeychainManager.sharedManager stringForKey:InstagramAccessTokenKeychainKey];
+        }
+        return _accessToken;
+    }
+}
+
+- (BOOL)hasAccessToken
+{
+    return self.accessToken != nil;
 }
 
 
@@ -160,17 +201,17 @@ static NSString *const PaginationKey            = @"pagination";
         NSString* accessToken = [self accesTokenFromRedirectURI:url];
         if (accessToken)
         {
-            UserModel.sharedModel.accessToken = accessToken;
+            self.accessToken = accessToken;
             [NSNotificationCenter.defaultCenter
                 postNotificationName:kDidSuccessfullyAuthenticate
-                object:self
+                object:nil
             ];
         }
         else
         {
             [NSNotificationCenter.defaultCenter
                 postNotificationName:kDidFailToAuthenticate
-                object:self
+                object:nil
             ];
         }
     }
@@ -204,50 +245,59 @@ static NSString *const PaginationKey            = @"pagination";
 
 /******************************************************************************/
 
-- (void)performGetRequestFromPath:(NSString *)path
-    parameters:(NSDictionary *)parameters
+- (void)getSelfUserDetailsWithSuccess:(InstagramServiceDataResponseBlock)success
+    failure:(InstagramServiceErrorBlock)failure
 {
-    NSMutableDictionary *fullParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
-
-    if (UserModel.sharedModel.hasAccessToken)
-    {
-        fullParameters[AccessTokenKey] = UserModel.sharedModel.accessToken;
-    }
+    NSString *perecentEscapedEndPoint = [SelfUserDetailEndpoint stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *parameters = [self prepareParameters:nil];
     
-    NSString *percentageEscapedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-
     [_requestOperationManager
-        GET:percentageEscapedPath
-        parameters:fullParameters
-        success:^(AFHTTPRequestOperation *operation, id responseObject)
+        GET:perecentEscapedEndPoint
+        parameters:parameters
+        success:^(AFHTTPRequestOperation *operation, id response)
         {
-
+            success(response[DataKey]);
         }
         failure:^(AFHTTPRequestOperation *operation, NSError *error)
         {
-//            failure(error,[[operation response] statusCode]);
+            failure(error);
         }
     ];
 }
 
-- (void)getUserDetails
+- (void)getSelfUserFeedWithSuccess:(InstagramServiceDataAndPaginationResponseBlock)success
+    failure:(InstagramServiceErrorBlock)failure
 {
-    [self
-        performGetRequestFromPath:UserDetailEndpoint
-        parameters:nil
+    NSString *perecentEscapedEndPoint = [SelfUserFeedEndpoint stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *parameters = [self prepareParameters:nil];
+    
+    [_requestOperationManager
+        GET:perecentEscapedEndPoint
+        parameters:parameters
+        success:^(AFHTTPRequestOperation *operation, id response)
+        {
+            success(response[DataKey], response[PaginationKey]);
+        }
+        failure:^(AFHTTPRequestOperation *operation, NSError *error)
+        {
+            failure(error);
+        }
     ];
 }
 
-- (InstagramPagination *)parsePagination:(id)response
+- (NSDictionary *)prepareParameters:(NSDictionary *)parameters
 {
-    NSDictionary *responseDictionary = (NSDictionary *)response;
-    if ([responseDictionary isKindOfClass:NSDictionary.class])
+    NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
+    if (self.hasAccessToken)
     {
-        
+        mutableParameters[AccessTokenKey] = self.accessToken;
     }
+    
+    return [NSDictionary dictionaryWithDictionary:mutableParameters];
 }
+
 //
-//- (void)getSelfFeedWithSuccess:(InstagramMediaBlock)success
+//- (void)getSelfUserFeedWithSuccess:(InstagramMediaBlock)success
 //    failure:(InstagramFailureBlock)failure
 //{
 //    [self getPath:[NSString stringWithFormat:@"users/self/feed"] parameters:nil responseModel:[InstagramMedia class] success:^(id response, InstagramPaginationInfo *paginationInfo) {
@@ -265,7 +315,7 @@ static NSString *const PaginationKey            = @"pagination";
 //}
 //
 //
-//- (void)getSelfFeedWithCount:(NSInteger)count
+//- (void)getSelfUserFeedWithCount:(NSInteger)count
 //    maxId:(NSString *)maxId
 //    success:(InstagramMediaBlock)success
 //    failure:(InstagramFailureBlock)failure

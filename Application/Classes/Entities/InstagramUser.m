@@ -8,21 +8,31 @@
 
 #import "InstagramUser.h"
 #import "InstagramComment.h"
-
+#import "InstagramMedia.h"
 
 @implementation InstagramUser
 
 @dynamic id;
 @dynamic username;
 @dynamic fullName;
-@dynamic profilePictureURL;
+@dynamic profilePictureURLString;
 @dynamic bio;
-@dynamic websiteURL;
-@dynamic mediaCounts;
+@dynamic websiteURLString;
+@dynamic mediaCount;
 @dynamic followsCount;
-@dynamic followedByCounts;
+@dynamic followedByCount;
 @dynamic isSelf;
 @dynamic comments;
 @dynamic media;
+
+- (NSURL *)profilePictureURL
+{
+    return [NSURL URLWithString:self.profilePictureURLString];
+}
+
+- (NSURL *)websiteURL
+{
+    return [NSURL URLWithString:self.websiteURLString];
+}
 
 @end

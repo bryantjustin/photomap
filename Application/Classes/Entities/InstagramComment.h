@@ -9,12 +9,19 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class InstagramUser;
 
+NS_ENUM(NSInteger, CommentType)
+{
+    CommentTypeDefault,
+    CommentTypeCaption
+};
 @interface InstagramComment : NSManagedObject
 
-@property (nonatomic, retain) NSDate * createDate;
+@property (nonatomic, retain) NSDate * createdDate;
 @property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) NSString * text;
-@property (nonatomic, retain) NSManagedObject *user;
+@property (nonatomic, retain) NSNumber * type;
+@property (nonatomic, retain) InstagramUser *user;
 
 @end

@@ -9,22 +9,26 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class InstagramComment;
+@class InstagramComment, InstagramMedia;
 
 @interface InstagramUser : NSManagedObject
 
-@property (nonatomic, retain) NSString * id;
-@property (nonatomic, retain) NSString * username;
-@property (nonatomic, retain) NSString * fullName;
-@property (nonatomic, retain) NSString * profilePictureURL;
-@property (nonatomic, retain) NSString * bio;
-@property (nonatomic, retain) NSString * websiteURL;
-@property (nonatomic, retain) NSNumber * mediaCounts;
-@property (nonatomic, retain) NSNumber * followsCount;
-@property (nonatomic, retain) NSNumber * followedByCounts;
-@property (nonatomic, retain) NSNumber * isSelf;
+@property (nonatomic, retain) NSString *id;
+@property (nonatomic, retain) NSString *username;
+@property (nonatomic, retain) NSString *fullName;
+@property (nonatomic, retain) NSString *profilePictureURLString;
+@property (nonatomic, retain) NSString *bio;
+@property (nonatomic, retain) NSString *websiteURLString;
+@property (nonatomic, retain) NSNumber *mediaCount;
+@property (nonatomic, retain) NSNumber *followsCount;
+@property (nonatomic, retain) NSNumber *followedByCount;
+@property (nonatomic, retain) NSNumber *isSelf;
 @property (nonatomic, retain) NSSet *comments;
 @property (nonatomic, retain) NSSet *media;
+
+@property (nonatomic, readonly) NSURL *profilePictureURL;
+@property (nonatomic, readonly) NSURL *websiteURL;
+
 @end
 
 @interface InstagramUser (CoreDataGeneratedAccessors)
@@ -34,8 +38,8 @@
 - (void)addComments:(NSSet *)values;
 - (void)removeComments:(NSSet *)values;
 
-- (void)addMediaObject:(NSManagedObject *)value;
-- (void)removeMediaObject:(NSManagedObject *)value;
+- (void)addMediaObject:(InstagramMedia *)value;
+- (void)removeMediaObject:(InstagramMedia *)value;
 - (void)addMedia:(NSSet *)values;
 - (void)removeMedia:(NSSet *)values;
 
