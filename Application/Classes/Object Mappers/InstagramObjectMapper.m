@@ -121,7 +121,12 @@ static NSString *const NullString = @"<null>";
         media.id            = [NSString stringWithString:response[IDKey]];
         media.createdDate   = [NSDate dateWithTimeIntervalSince1970:[response[CreatedTimeKey] doubleValue]];
         media.user          = userEntityRequestHandler(response[UserKey]);
-        media.caption       = commentEntityRequestHandler(response[CaptionKey], YES);
+        
+        NSDictionary *captionResponse = response[CaptionKey];
+        if ([self isValueNonNull:captionResponse])
+        {
+            media.caption = commentEntityRequestHandler(captionResponse, YES);
+        }
         
         NSArray *commentResponses = response[CommentsKey][DataKey];
         for (NSDictionary *commentResponse in commentResponses)

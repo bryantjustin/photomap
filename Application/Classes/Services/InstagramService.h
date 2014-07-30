@@ -19,7 +19,7 @@ typedef void (^InstagramServiceDataAndPaginationResponseBlock)  (id dataResponse
  *
  *  @return InstagramService instance.
  */
-+ (instancetype)sharedService;
++ (instancetype)defaultService;
 
 @property (copy) NSString *accessToken;
 @property (readonly) BOOL hasAccessToken;

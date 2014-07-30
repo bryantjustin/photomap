@@ -13,9 +13,11 @@
 @class InstagramComment;
 @class InstagramPagination;
 
+@class MediaFeed;
+
 typedef void (^InstagramManagerErrorBlock)      (NSError *error);
 typedef void (^InstagramManagerUserBlock)       (InstagramUser *user);
-typedef void (^InstagramManagerMediaBlock)      (NSArray *media, InstagramPagination* pagination);
+typedef void (^InstagramManagerMediaFeedBlock)  (MediaFeed *feed);
 typedef void (^InstagramManagerCommentBlock)    (NSArray *comments);
 
 @interface InstagramManager : NSObject
@@ -36,7 +38,7 @@ typedef void (^InstagramManagerCommentBlock)    (NSArray *comments);
 - (void)getSelfUserDetailsWithSuccess:(InstagramManagerUserBlock)success
     failure:(InstagramManagerErrorBlock)error;
 
-- (void)getSelfUserFeedWithSuccess:(InstagramManagerMediaBlock)success
+- (void)getSelfUserFeedWithSuccess:(InstagramManagerMediaFeedBlock)success
     failure:(InstagramManagerErrorBlock)failure;
 
 @end

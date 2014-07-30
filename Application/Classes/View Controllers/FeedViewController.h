@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class MediaFeed;
+
 @interface FeedViewController : UIViewController
+<
+    UITableViewDataSource,
+    UITableViewDelegate
+>
+
+@property (nonatomic,strong) MediaFeed *feed;
 
 @end

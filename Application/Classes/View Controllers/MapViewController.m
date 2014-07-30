@@ -18,7 +18,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        [self setTitle:@"Map"];
+        [self setTitle:@"PHOTOMAP"];
     }
     return self;
 }

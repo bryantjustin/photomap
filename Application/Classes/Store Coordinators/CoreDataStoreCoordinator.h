@@ -1,5 +1,5 @@
 //
-//  CoreStoreCoordinator.h
+//  CoreDataStoreCoordinator.h
 //  PhotoMap
 //
 //  Created by Bryant Balatbat on 2014-07-27.
@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CoreStoreCoordinator : NSObject
+@interface CoreDataStoreCoordinator : NSObject
 
 
+@property (nonatomic,strong) NSManagedObjectContext *mainManagedObjectContext;
 
 /******************************************************************************/
 
@@ -21,7 +22,7 @@
 /**
  *  Singleton reference to the store coordinator.
  *
- *  @return CoreStoreCoordinator instance.
+ *  @return CoreDataStoreCoordinator instance.
  */
 + (instancetype)sharedStoreCoordinator;
 
@@ -47,15 +48,6 @@
  *  @return NSManagedObjectContext with concurrency type NSPrivateQueueConcurrencyType
  */
 - (NSManagedObjectContext *)spawnWorkerContext;
-
-/**
- *  Creates a NSManagedObjectContext with a NSMainQueueConcurrencyType concurrency type.
- *  This managed context will be executing in the main thread and should be used for 
- *  performing saves, creating entities, and any tasks that the UI is dependent on.
- *
- *  @return NSManagedObjectContext with concurrency type NSMainQueueConcurrencyType
- */
-- (NSManagedObjectContext *)spawnMainContext;
 
 
 /**

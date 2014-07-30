@@ -54,7 +54,7 @@ static NSString *const PaginationKey            = @"pagination";
     dispatch_queue_t _backgroundQueue;
 }
 
-+ (instancetype)sharedService
++ (instancetype)defaultService
 {
     static dispatch_once_t onceToken = 0;
     static id instance = nil;

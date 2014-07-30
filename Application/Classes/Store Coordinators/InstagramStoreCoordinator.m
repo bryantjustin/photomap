@@ -10,7 +10,7 @@
 
 #import "InstagramStoreCoordinator.h"
 
-#import "CoreStoreCoordinator.h"
+#import "CoreDataStoreCoordinator.h"
 #import "InstagramUser.h"
 #import "InstagramComment.h"
 #import "InstagramMedia.h"
@@ -56,7 +56,7 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
 
 /******************************************************************************/
 
-+ (instancetype)sharedStoreCoordinator
++ (instancetype)defaultStoreCoordinator
 {
     static dispatch_once_t predicate = 0ul;
     static id instance = nil;
@@ -93,7 +93,7 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
     // Saving a plist to disk was also considered. The problem with this is that NSManagedObjectIDs change between
     // migrations will become stale if a migration does occur.
     
-    NSManagedObjectContext *workerQueueContext = [CoreStoreCoordinator.sharedStoreCoordinator spawnWorkerContext];
+    NSManagedObjectContext *workerQueueContext = [CoreDataStoreCoordinator.sharedStoreCoordinator spawnWorkerContext];
     [workerQueueContext
         performBlock:^(void)
         {
@@ -123,7 +123,7 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
                 }
             }
             
-            NSManagedObjectContext *mainQueueContext = [CoreStoreCoordinator.sharedStoreCoordinator spawnMainContext];
+            NSManagedObjectContext *mainQueueContext = CoreDataStoreCoordinator.sharedStoreCoordinator.mainManagedObjectContext;
             [mainQueueContext
                 performBlock:^(void)
                 {
@@ -197,7 +197,7 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
 - (void)cacheSelfUserDetailsResponse:(NSDictionary *)response
     withCompletion:(InstagramStoreCoordinatorUserAndErrorBlock)completion
 {
-    NSManagedObjectContext *mainQueueContext = [CoreStoreCoordinator.sharedStoreCoordinator spawnMainContext];
+    NSManagedObjectContext *mainQueueContext = CoreDataStoreCoordinator.sharedStoreCoordinator.mainManagedObjectContext;
     [mainQueueContext
         performBlock:^(void)
         {
@@ -237,7 +237,7 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
 
 - (void)getSelfUserDetailsWithCompletion:(InstagramStoreCoordinatorUserAndErrorBlock)completion
 {
-    NSManagedObjectContext *workerQueueContext = [CoreStoreCoordinator.sharedStoreCoordinator spawnWorkerContext];
+    NSManagedObjectContext *workerQueueContext = [CoreDataStoreCoordinator.sharedStoreCoordinator spawnWorkerContext];
     [workerQueueContext
         performBlock:^(void)
         {
@@ -262,7 +262,7 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
                 error:&error
             ].firstObject;
             
-            NSManagedObjectContext *mainQueueContext = [CoreStoreCoordinator.sharedStoreCoordinator spawnMainContext];
+            NSManagedObjectContext *mainQueueContext = CoreDataStoreCoordinator.sharedStoreCoordinator.mainManagedObjectContext;
             [mainQueueContext
                 performBlock:^(void)
                 {
@@ -301,12 +301,12 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
 
 - (void)getSelfUserFeedWithCompletion:(InstagramStoreCoordinatorMediaAndErrorBlock)completion
 {
-    NSManagedObjectContext *workerQueueContext = [CoreStoreCoordinator.sharedStoreCoordinator spawnWorkerContext];
+    NSManagedObjectContext *workerQueueContext = [CoreDataStoreCoordinator.sharedStoreCoordinator spawnWorkerContext];
     [workerQueueContext
         performBlock:^(void)
         {
             NSFetchRequest *fetchRequest = [NSFetchRequest new];
-            fetchRequest.resultType = NSManagedObjectResultType;
+            fetchRequest.resultType = NSManagedObjectIDResultType;
             [fetchRequest
                 setEntity:[NSEntityDescription
                     entityForName:InstagramMediaEntityName
@@ -329,7 +329,7 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
                 error:&error
             ];
             
-            NSManagedObjectContext *mainQueueContext = [CoreStoreCoordinator.sharedStoreCoordinator spawnMainContext];
+            NSManagedObjectContext *mainQueueContext = CoreDataStoreCoordinator.sharedStoreCoordinator.mainManagedObjectContext;
             [mainQueueContext
                 performBlock:^(void)
                 {
@@ -364,7 +364,7 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
 - (void)cacheMediaFeedResponse:(NSArray *)response
     withCompletion:(InstagramStoreCoordinatorMediaAndErrorBlock)completion
 {
-    NSManagedObjectContext *mainQueueContext = [CoreStoreCoordinator.sharedStoreCoordinator spawnMainContext];
+    NSManagedObjectContext *mainQueueContext = CoreDataStoreCoordinator.sharedStoreCoordinator.mainManagedObjectContext;
     [mainQueueContext
         performBlock:^(void)
         {
@@ -562,7 +562,7 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
         NSLog( @"ERROR: %@ – %@", message, error.localizedDescription );
     }
     
-    [CoreStoreCoordinator.sharedStoreCoordinator saveToPersistentStore];
+    [CoreDataStoreCoordinator.sharedStoreCoordinator saveToPersistentStore];
     
     return error;
 }

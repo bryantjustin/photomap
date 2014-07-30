@@ -6,21 +6,25 @@
 //  Copyright (c) 2014 bryantjustin.com. All rights reserved.
 //
 
+#import <AFNetworking/AFNetworking.h>
 #import "InstagramManager.h"
 
 #import "InstagramPagination.h"
 #import "InstagramObjectMapper.h"
 #import "InstagramService.h"
 #import "InstagramStoreCoordinator.h"
+#import "MediaFeed.h"
 
 @interface InstagramManager ()
-
-@property (readonly) InstagramService           *service;
-@property (readonly) InstagramStoreCoordinator  *storeCoordinator;
 
 @end
 
 @implementation InstagramManager
+{
+    InstagramService            *_service;
+    InstagramStoreCoordinator   *_storeCoordinator;
+    AFNetworkReachabilityStatus _status;
+}
 
 /******************************************************************************/
 
@@ -56,7 +60,21 @@
     return !_service.hasAccessToken;
 }
 
-
+- (BOOL)shouldUseCache
+{
+    BOOL shouldUseCache = NO;
+    switch (_status)
+    {
+        case AFNetworkReachabilityStatusUnknown:
+        case AFNetworkReachabilityStatusNotReachable:
+            shouldUseCache = YES;
+            break;
+        default:
+            break;
+    }
+    
+    return shouldUseCache;
+}
 
 /******************************************************************************/
 
@@ -68,14 +86,25 @@
 {
     if (self = [super init])
     {
-        _service = InstagramService.sharedService;
-        _storeCoordinator = InstagramStoreCoordinator.sharedStoreCoordinator;
+        _service            = InstagramService.defaultService;
+        _storeCoordinator   = InstagramStoreCoordinator.defaultStoreCoordinator;
+        
+        [self prepareToObserveReachabilityStatus];
     }
     
     return self;
 }
 
-
+- (void)prepareToObserveReachabilityStatus
+{
+    [AFNetworkReachabilityManager.sharedManager startMonitoring];
+    [AFNetworkReachabilityManager.sharedManager
+        setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status)
+        {
+            _status = status;
+        }
+    ];
+}
 
 /******************************************************************************/
 
@@ -160,38 +189,60 @@
     ];
 }
 
-- (void)getSelfUserFeedWithSuccess:(InstagramManagerMediaBlock)success
+- (void)getSelfUserFeedWithSuccess:(InstagramManagerMediaFeedBlock)success
     failure:(InstagramManagerErrorBlock)failure
 {
-    [_service
-        getSelfUserFeedWithSuccess:^(id dataResponse, id paginationResponse)
-        {
-            InstagramPagination *pagination = [InstagramPagination new];
-            [InstagramObjectMapper
-                mapResponse:paginationResponse
-                toPagination:pagination
-            ];
-            
-            [_storeCoordinator
-                cacheSelfUserFeedResponse:dataResponse
-                withCompletion:^(NSArray *media, NSError *error)
+    if (self.shouldUseCache)
+    {
+        [_storeCoordinator
+            getSelfUserFeedWithCompletion:^(NSArray *media, NSError *error)
+            {
+                if (error == nil)
                 {
-                    if (error == nil)
-                    {
-                        success(media,pagination);
-                    }
-                    else
-                    {
-                        failure(error);
-                    }
+                    MediaFeed *feed = [MediaFeed feedWithMedia:media];
+                    success(feed);
                 }
-            ];
-        }
-        failure:^(NSError *error)
-        {
-            failure(error);
-        }
-    ];
+                else
+                {
+                    failure(error);
+                }
+            }
+        ];
+    }
+    else
+    {
+        [_service
+            getSelfUserFeedWithSuccess:^(id dataResponse, id paginationResponse)
+            {
+                InstagramPagination *pagination = [InstagramPagination new];
+                [InstagramObjectMapper
+                    mapResponse:paginationResponse
+                    toPagination:pagination
+                ];
+                
+                [_storeCoordinator
+                    cacheSelfUserFeedResponse:dataResponse
+                    withCompletion:^(NSArray *media, NSError *error)
+                    {
+                        if (error == nil)
+                        {
+                            MediaFeed *feed = [MediaFeed feedWithMedia:media];
+                            feed.pagination = pagination;
+                            success(feed);
+                        }
+                        else
+                        {
+                            failure(error);
+                        }
+                    }
+                ];
+            }
+            failure:^(NSError *error)
+            {
+                failure(error);
+            }
+        ];
+    }
 }
 
 @end

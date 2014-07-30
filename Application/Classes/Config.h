@@ -20,11 +20,24 @@ static NSString *const InstagramCommentEntityName  = @"InstagramComment";
 
 /******************************************************************************/
 
+#pragma mark - Fonts
+
+/******************************************************************************/
+
+static NSString *const AvenirFont       = @"Avenir";
+static NSString *const AvenirBlackFont  = @"Avenir-Black";
+
+
+
+/******************************************************************************/
+
 #pragma mark - Colors
 
 /******************************************************************************/
 
 #define DarkGreyColor [UIColor colorWithRed:28./255. green:28./255. blue:28./255. alpha:1.]
+
+
 
 /******************************************************************************/
 
@@ -47,9 +60,3 @@ static NSString *const kDidFailToAuthenticate           = @"kDidFailToAuthentica
 static NSString *const kDidReceiveAuthenticationError   = @"kDidReceiveAuthenticationError";
 
 
-
-/******************************************************************************/
-
-#pragma mark - Event Notification Keys
-
-/******************************************************************************/

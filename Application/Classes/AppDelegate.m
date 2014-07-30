@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "InstagramService.h"
+#import "InstagramManager.h"
 #import "RootViewController.h"
 
 @implementation AppDelegate
@@ -67,7 +67,7 @@
     sourceApplication:(NSString *)sourceApplication
     annotation:(id)annotation
 {
-    return [InstagramService.sharedService
+    return [InstagramManager.sharedManager
         application:application
         openURL:url
         sourceApplication:sourceApplication

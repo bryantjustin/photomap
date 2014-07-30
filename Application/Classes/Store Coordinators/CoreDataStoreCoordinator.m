@@ -1,5 +1,5 @@
 //
-//  CoreStoreCoordinator.m
+//  CoreDataStoreCoordinator.m
 //  PhotoMap
 //
 //  Created by Bryant Balatbat on 2014-07-27.
@@ -8,7 +8,7 @@
 
 #import <CoreData/CoreData.h>
 
-#import "CoreStoreCoordinator.h"
+#import "CoreDataStoreCoordinator.h"
 
 static NSString *const StoreURL             = @"com.bryantjustin.com.photomap.sqlite";
 static NSString *const StoreModelResource   = @"PhotoMapModel";
@@ -22,7 +22,7 @@ static NSString *const StoreModelExtension  = @"momd";
 
 /******************************************************************************/
 
-@interface CoreStoreCoordinator ()
+@interface CoreDataStoreCoordinator ()
 
 
 
@@ -46,7 +46,7 @@ static NSString *const StoreModelExtension  = @"momd";
 
 /******************************************************************************/
 
-@implementation CoreStoreCoordinator
+@implementation CoreDataStoreCoordinator
 
 
 
@@ -80,6 +80,7 @@ static NSString *const StoreModelExtension  = @"momd";
 
 /******************************************************************************/
 
+@synthesize mainManagedObjectContext        = _mainManagedObjectContext;
 @synthesize privateManagedObjectContext     = _privateManagedObjectContext;
 @synthesize managedObjectModel              = _managedObjectModel;
 @synthesize persistentStoreCoordinator      = _persistentStoreCoordinator;
@@ -102,6 +103,18 @@ static NSString *const StoreModelExtension  = @"momd";
 
     return _privateManagedObjectContext;
 }
+
+- (NSManagedObjectContext *)mainManagedObjectContext
+{
+    if (_mainManagedObjectContext == nil)
+    {
+        _mainManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+        _mainManagedObjectContext.parentContext = self.privateManagedObjectContext;
+    }
+    
+    return _mainManagedObjectContext;
+}
+
 
 - (NSManagedObjectModel *)managedObjectModel
 {
@@ -244,23 +257,11 @@ static NSString *const StoreModelExtension  = @"momd";
     NSManagedObjectContext *context = [[NSManagedObjectContext alloc]
         initWithConcurrencyType:NSPrivateQueueConcurrencyType
     ];
-    context.parentContext = self.privateManagedObjectContext;
+    context.parentContext = self.mainManagedObjectContext;
 
     return context;
 }
 
-- (NSManagedObjectContext *)spawnMainContext
-{
-    // Creates a new context that is associated with the main thread.
-    // If a save is performed on this context, the changes will be
-    // propagated to the private managed context of the singleton.
-    
-    NSManagedObjectContext *context = [[NSManagedObjectContext alloc]
-        initWithConcurrencyType:NSMainQueueConcurrencyType
-    ];
-    context.parentContext = self.privateManagedObjectContext;
-    return context;
-}
 
 
 

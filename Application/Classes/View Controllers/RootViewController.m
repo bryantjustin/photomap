@@ -15,6 +15,8 @@
 #import "OAuthPromptViewController.h"
 #import "ProfileViewController.h"
 
+static CGFloat const NavigationBarTitleFontSize = 15.0;
+
 static NSString *const FeedIcon     = @"feed-icon";
 static NSString *const MapIcon      = @"map-icon";
 static NSString *const ProfileIcon  = @"profile-icon";
@@ -65,47 +67,6 @@ static NSString *const ProfileIcon  = @"profile-icon";
 @synthesize mapViewController           = _mapViewController;
 @synthesize profileViewController       = _profileViewController;
 @synthesize oauthPromptViewController   = _oauthPromptViewController;
-
-- (UITabBarController *)tabBarController
-{
-    if (_tabBarController == nil)
-    {
-        _tabBarController = [UITabBarController new];
-        [_tabBarController
-            setViewControllers:
-            @[
-                [self controllerWithRootController:self.feedViewController],
-                [self controllerWithRootController:self.mapViewController],
-                self.profileViewController
-            ]
-        ];
-        
-        for (int i = 0; i < _tabBarController.tabBar.items.count; i++)
-        {
-            UITabBarItem *tabBarItem    = _tabBarController.tabBar.items[i];
-            tabBarItem.title            = [NSString string];
-            tabBarItem.imageInsets      = IconInsets;
-            switch (i)
-            {
-                case 0:
-                    tabBarItem.image = [UIImage imageNamed:FeedIcon];
-                    break;
-                case 1:
-                    tabBarItem.image = [UIImage imageNamed:MapIcon];
-                    break;
-                case 2:
-                    tabBarItem.image = [UIImage imageNamed:ProfileIcon];
-                    break;
-            }
-            
-        }
-        
-        _tabBarController.tabBar.translucent    = NO;
-        _tabBarController.tabBar.barTintColor   = DarkGreyColor;
-    }
-    
-    return _tabBarController;
-}
 
 - (FeedViewController *)feedViewController
 {
@@ -197,9 +158,9 @@ static NSString *const ProfileIcon  = @"profile-icon";
         initializeManagerWithCompletion:^(NSError *error)
         {
             [InstagramManager.sharedManager
-                getSelfUserFeedWithSuccess:^(NSArray *media, InstagramPagination *pagination)
+                getSelfUserFeedWithSuccess:^(MediaFeed *feed)
                 {
-                
+                    [self.feedViewController setFeed:feed];
                 }
                 failure:^(NSError *error)
                 {
@@ -207,6 +168,58 @@ static NSString *const ProfileIcon  = @"profile-icon";
             ];
         }
     ];
+}
+
+
+
+
+/******************************************************************************/
+
+#pragma mark - Tab Controller Methods
+
+/******************************************************************************/
+
+- (UITabBarController *)tabBarController
+{
+    if (_tabBarController == nil)
+    {
+        _tabBarController = [UITabBarController new];
+        [_tabBarController
+            setViewControllers:
+            @[
+                [self controllerWithRootController:self.mapViewController],
+                [self controllerWithRootController:self.feedViewController],
+                self.profileViewController
+            ]
+        ];
+        
+        for (int i = 0; i < _tabBarController.tabBar.items.count; i++)
+        {
+            UITabBarItem *tabBarItem    = _tabBarController.tabBar.items[i];
+            tabBarItem.title            = [NSString string];
+            tabBarItem.imageInsets      = IconInsets;
+        
+            switch (i)
+            {
+                case 0:
+                    tabBarItem.image = [UIImage imageNamed:MapIcon];
+                    break;
+                case 1:
+                    tabBarItem.image = [UIImage imageNamed:FeedIcon];
+                    break;
+                case 2:
+                    tabBarItem.image = [UIImage imageNamed:ProfileIcon];
+                    break;
+            }
+            
+        }
+        
+        _tabBarController.tabBar.selectedImageTintColor = UIColor.whiteColor;
+        _tabBarController.tabBar.translucent            = NO;
+        _tabBarController.tabBar.barTintColor           = DarkGreyColor;
+    }
+    
+    return _tabBarController;
 }
 
 
@@ -222,8 +235,30 @@ static NSString *const ProfileIcon  = @"profile-icon";
     UINavigationController *navigationController = [[UINavigationController alloc]
         initWithRootViewController:controller
     ];
-    
+    navigationController.navigationBar.barTintColor         = DarkGreyColor;
+    navigationController.navigationBar.tintColor            = UIColor.whiteColor;
+    navigationController.navigationBar.titleTextAttributes  =
+    @{
+        NSFontAttributeName             :   [UIFont
+                                                fontWithName:AvenirBlackFont
+                                                size:NavigationBarTitleFontSize
+                                            ],
+        NSForegroundColorAttributeName  :   UIColor.whiteColor
+    };
     return navigationController;
+}
+
+
+
+/******************************************************************************/
+
+#pragma mark - Status Bar Customization
+
+/******************************************************************************/
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent; 
 }
 
 
@@ -258,8 +293,6 @@ static NSString *const ProfileIcon  = @"profile-icon";
                 name:kDidSuccessfullyAuthenticate
                 object:nil
             ];
-            
-            [self continueDataInitialization];
         }
     ];
 }

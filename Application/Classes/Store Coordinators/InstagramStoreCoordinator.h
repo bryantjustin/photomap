@@ -25,7 +25,7 @@ typedef void (^InstagramStoreCoordinatorCommentandErrorBlock)   (NSArray *commen
  *
  *  @return InstagramStoreCoordinator instance.
  */
-+ (instancetype)sharedStoreCoordinator;
++ (instancetype)defaultStoreCoordinator;
 
 
 /**

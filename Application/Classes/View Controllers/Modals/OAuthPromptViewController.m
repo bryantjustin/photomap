@@ -7,7 +7,7 @@
 //
 
 #import "OAuthPromptViewController.h"
-#import "InstagramService.h"
+#import "InstagramManager.h"
 
 @interface OAuthPromptViewController ()
 
@@ -17,7 +17,18 @@
 
 - (IBAction)didTouchUpInsideSignInButton:(id)sender
 {
-    [InstagramService.sharedService login];
+    [InstagramManager.sharedManager login];
+}
+
+/******************************************************************************/
+
+#pragma mark - Status Bar Customization
+
+/******************************************************************************/
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent; 
 }
 
 @end
