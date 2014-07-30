@@ -398,6 +398,7 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
             {
                 NSString *userID = [InstagramObjectMapper extractIDFromResponse:userResponse];
                 InstagramUser *user = temporaryUsersByID[userID];
+
                 if (user == nil)
                 {
                     user = (InstagramUser *)[self
@@ -408,9 +409,10 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
                     
                     if (user.objectID.isTemporaryID)
                     {
-                        temporaryUsersByID[user.id] = user;
+                        temporaryUsersByID[userID] = user;
                         [temporaries addObject:user];
                     }
+                    
                     [relationships addObject:user];
                 }
                 
@@ -418,7 +420,7 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
                     mapResponse:userResponse
                     toUser:user
                 ];
-            
+
                 return user;
             };
             
@@ -603,7 +605,7 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
             }
             
             NSMutableDictionary *objectIDsByID = _objectIDsByIDByEntity[entityName];
-            if (objectIDsByID)
+            if (objectIDsByID == nil)
             {
                 _objectIDsByIDByEntity[entityName] = [NSMutableDictionary dictionary];
                 objectIDsByID = _objectIDsByIDByEntity[entityName];

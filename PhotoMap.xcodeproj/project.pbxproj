@@ -36,7 +36,6 @@
 		14FFD48D1985A1D900A57FC6 /* PhotoMapModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14FFD48B1985A1D900A57FC6 /* PhotoMapModel.xcdatamodeld */; };
 		14FFD4901985B0C500A57FC6 /* InstagramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FFD48F1985B0C500A57FC6 /* InstagramManager.m */; };
 		14FFD49E1985B4DC00A57FC6 /* InstagramStoreCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FFD49D1985B4DC00A57FC6 /* InstagramStoreCoordinator.m */; };
-		14FFD4A31985B6A400A57FC6 /* NSManagedObject+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FFD4A21985B6A400A57FC6 /* NSManagedObject+Parsing.m */; };
 		14FFD4A51985B95A00A57FC6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FFD4A41985B95A00A57FC6 /* CoreData.framework */; };
 		14FFD4A91985BFAF00A57FC6 /* CoreStoreCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FFD4A81985BFAF00A57FC6 /* CoreStoreCoordinator.m */; };
 		14FFD4B51985CE6700A57FC6 /* InstagramMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FFD4B41985CE6700A57FC6 /* InstagramMedia.m */; };
@@ -101,8 +100,6 @@
 		14FFD48F1985B0C500A57FC6 /* InstagramManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstagramManager.m; path = Managers/InstagramManager.m; sourceTree = "<group>"; };
 		14FFD49C1985B4DC00A57FC6 /* InstagramStoreCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstagramStoreCoordinator.h; path = "Store Coordinators/InstagramStoreCoordinator.h"; sourceTree = "<group>"; };
 		14FFD49D1985B4DC00A57FC6 /* InstagramStoreCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstagramStoreCoordinator.m; path = "Store Coordinators/InstagramStoreCoordinator.m"; sourceTree = "<group>"; };
-		14FFD4A11985B6A400A57FC6 /* NSManagedObject+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+Parsing.h"; path = "Categories/NSManagedObject+Parsing.h"; sourceTree = "<group>"; };
-		14FFD4A21985B6A400A57FC6 /* NSManagedObject+Parsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+Parsing.m"; path = "Categories/NSManagedObject+Parsing.m"; sourceTree = "<group>"; };
 		14FFD4A41985B95A00A57FC6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		14FFD4A71985BFAF00A57FC6 /* CoreStoreCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreStoreCoordinator.h; path = "Store Coordinators/CoreStoreCoordinator.h"; sourceTree = "<group>"; };
 		14FFD4A81985BFAF00A57FC6 /* CoreStoreCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreStoreCoordinator.m; path = "Store Coordinators/CoreStoreCoordinator.m"; sourceTree = "<group>"; };
@@ -234,7 +231,6 @@
 				1451D6BE1983EE99003380BC /* AppDelegate.h */,
 				1451D6BF1983EE99003380BC /* AppDelegate.m */,
 				1451D6EB1984232F003380BC /* Config.h */,
-				14FFD4A01985B67800A57FC6 /* Categories */,
 				14FFD49A1985B18200A57FC6 /* Entities */,
 				1451D6E719840E18003380BC /* Managers */,
 				145A00A61985363C000E1B11 /* Models */,
@@ -334,15 +330,6 @@
 				14FFD4A81985BFAF00A57FC6 /* CoreStoreCoordinator.m */,
 			);
 			name = "Store Coordinators";
-			sourceTree = "<group>";
-		};
-		14FFD4A01985B67800A57FC6 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				14FFD4A11985B6A400A57FC6 /* NSManagedObject+Parsing.h */,
-				14FFD4A21985B6A400A57FC6 /* NSManagedObject+Parsing.m */,
-			);
-			name = Categories;
 			sourceTree = "<group>";
 		};
 		14FFD4C71986676E00A57FC6 /* Object Mappers */ = {
@@ -497,7 +484,6 @@
 				1451D6C51983EE99003380BC /* AppDelegate.m in Sources */,
 				1451D6921983EA03003380BC /* main.m in Sources */,
 				1451D6D01983FCF0003380BC /* FeedViewController.m in Sources */,
-				14FFD4A31985B6A400A57FC6 /* NSManagedObject+Parsing.m in Sources */,
 				1451D6DD1983FD2F003380BC /* MapViewController.m in Sources */,
 				1451D6E21983FD45003380BC /* ProfileViewController.m in Sources */,
 				14FFD4B81985CE6800A57FC6 /* InstagramComment.m in Sources */,

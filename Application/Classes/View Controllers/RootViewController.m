@@ -15,6 +15,7 @@
 #import "OAuthPromptViewController.h"
 #import "ProfileViewController.h"
 
+static NSString *const FeedIcon     = @"feed-icon";
 static NSString *const MapIcon      = @"map-icon";
 static NSString *const ProfileIcon  = @"profile-icon";
 
@@ -87,6 +88,8 @@ static NSString *const ProfileIcon  = @"profile-icon";
             switch (i)
             {
                 case 0:
+                    tabBarItem.image = [UIImage imageNamed:FeedIcon];
+                    break;
                 case 1:
                     tabBarItem.image = [UIImage imageNamed:MapIcon];
                     break;

@@ -28,7 +28,8 @@ NSString *const FollowedByCountsKey     = @"followed_by";
 NSString *const NextURLKey              = @"next_url";
 NSString *const NextMaxIDKey            = @"next_max_id";
 
-NSString *const CreatorKey              = @"from";
+NSString *const UserKey                 = @"user";
+NSString *const FromKey                 = @"from";
 NSString *const TextKey                 = @"text";
 NSString *const CreatedTimeKey          = @"created_time";
 
@@ -48,8 +49,8 @@ NSString *const HeightKey               = @"height";
 NSString *const WidthKey                = @"width";
 
 NSString *const TypeKey                 = @"type";
-NSString *const ImageKey                = @"image";
-NSString *const VideoKey                = @"video";
+NSString *const ImageString             = @"image";
+NSString *const VideoString             = @"video";
 
 static NSString *const NullString = @"<null>";
 
@@ -119,7 +120,7 @@ static NSString *const NullString = @"<null>";
     {
         media.id            = [NSString stringWithString:response[IDKey]];
         media.createdDate   = [NSDate dateWithTimeIntervalSince1970:[response[CreatedTimeKey] doubleValue]];
-        media.user          = userEntityRequestHandler(response[CreatorKey]);
+        media.user          = userEntityRequestHandler(response[UserKey]);
         media.caption       = commentEntityRequestHandler(response[CaptionKey], YES);
         
         NSArray *commentResponses = response[CommentsKey][DataKey];
@@ -177,8 +178,7 @@ static NSString *const NullString = @"<null>";
             }
         }
         
-        NSString *mediaType = response[TypeKey];
-        BOOL isVideo = [mediaType isEqualToString:[NSString stringWithString:response[VideoKey]]];
+        BOOL isVideo = [response[TypeKey] isEqualToString:VideoString];
         media.type = isVideo ? @(InstagramMediaTypeVideo) : @(InstagramMediaTypeImage);
         
         // Parse videos response
@@ -217,16 +217,16 @@ static NSString *const NullString = @"<null>";
 }
 
 + (void)mapResponse:(NSDictionary *)response
-    toCommentFeed:(InstagramComment *)comment
+    toComment:(InstagramComment *)comment
     asCaption:(BOOL)asCaption
-    withUserEntityRequestHandler:(InstagramObjectMapperUserEntityRequestHandler)userEntityRequestHandler
+    withUserEntityRequestHandler:(InstagramObjectMapperUserEntityRequestHandler)userEntityRequestHandler;
 {
     if ([self isValueNonNull:response])
     {
         comment.id          = [NSString stringWithString:response[IDKey]];
         comment.text        = [NSString stringWithString:response[TextKey]];
         comment.createdDate = [NSDate dateWithTimeIntervalSince1970:[response[CreatedTimeKey] doubleValue]];
-        comment.user        = userEntityRequestHandler(response[CreatorKey]);
+        comment.user        = userEntityRequestHandler(response[FromKey]);
         comment.type        = asCaption ? @(CommentTypeCaption) : @(CommentTypeDefault);
     }
 }
