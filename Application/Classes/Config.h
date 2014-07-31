@@ -25,7 +25,16 @@ static NSString *const InstagramCommentEntityName  = @"InstagramComment";
 /******************************************************************************/
 
 static NSString *const AvenirFont       = @"Avenir";
+static NSString *const AvenirRomanFont  = @"Avenir-Roman";
+static NSString *const AvenirBookFont   = @"Avenir-Book";
 static NSString *const AvenirBlackFont  = @"Avenir-Black";
+static NSString *const AvenirMediumFont = @"Avenir-Medium";
+
+static NSString *const AvenirNextLightFont      = @"AvenirNext-Light";
+static NSString *const AvenirNextRegularFont    = @"AvenirNext-Regular";
+static NSString *const AvenirNextMediumFont     = @"AvenirNext-Medium";
+static NSString *const AvenirNextDemiBoldFont   = @"AvenirNext-DemiBold";
+static NSString *const AvenirNextBoldFont       = @"AvenirNext-Bold";
 
 
 

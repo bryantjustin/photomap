@@ -12,6 +12,8 @@
 
 @interface CommentTableViewCell : TableViewCell
 
++ (CGFloat)heightForRowWithString:(NSString *)string;
+
 @property (nonatomic,copy) InstagramComment *comment;
 
 @end

@@ -109,7 +109,13 @@
 
 - (CLLocationCoordinate2D)location
 {
-    return CLLocationCoordinate2DMake(self.latitude.doubleValue, self.longtitude.doubleValue);
+    CLLocationCoordinate2D location = kCLLocationCoordinate2DInvalid;
+    if (self.latitude && self.longtitude)
+    {
+        location = CLLocationCoordinate2DMake(self.latitude.doubleValue, self.longtitude.doubleValue);
+    }
+    
+    return location;
 }
 
 @end

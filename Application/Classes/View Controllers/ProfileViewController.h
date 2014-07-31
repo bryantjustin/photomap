@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class InstagramUser;
+
 @interface ProfileViewController : UIViewController
+
+@property (nonatomic,strong) InstagramUser *user;
+
 
 @end

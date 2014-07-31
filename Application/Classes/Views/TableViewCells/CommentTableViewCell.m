@@ -10,6 +10,11 @@
 #import "InstagramComment.h"
 #import "InstagramUser.h"
 
+static CGFloat const CommentFontSize        = 13.0;
+static CGFloat const CommentUsernameMaxY    = 41.0;
+static CGFloat const CommentBottomPading    = 15.0;
+static CGFloat const CommentWidth           = 290.0;
+
 @interface CommentTableViewCell ()
 
 @property (nonatomic,weak) IBOutlet UILabel *usernameLabel;
@@ -34,6 +39,26 @@
     
     self.commentLabel.text = comment.text;
     [self.commentLabel sizeToFit];
+}
+
++ (CGFloat)heightForRowWithString:(NSString *)string
+{
+    NSAttributedString *attributedString = [[NSAttributedString alloc]
+        initWithString:string
+        attributes:
+        @{
+            NSFontAttributeName:[UIFont
+                fontWithName:AvenirNextRegularFont
+                size:CommentFontSize
+            ]
+        }
+    ];
+    
+    UILabel *label = [UILabel new];
+    [label setNumberOfLines:0];
+    [label setAttributedText:attributedString];
+    CGSize size = [label sizeThatFits:CGSizeMake(CommentWidth, FLT_MAX)];
+    return CommentUsernameMaxY + size.height + CommentBottomPading; ;
 }
 
 @end

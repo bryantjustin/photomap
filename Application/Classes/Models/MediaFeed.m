@@ -47,7 +47,7 @@
         @[
             [NSSortDescriptor
                 sortDescriptorWithKey:@"createdDate"
-                ascending:YES
+                ascending:NO
             ]
         ]
     ];

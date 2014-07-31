@@ -14,10 +14,12 @@
 #import "MapViewController.h"
 #import "OAuthPromptViewController.h"
 #import "ProfileViewController.h"
+#import "SearchViewController.h"
 
 static CGFloat const NavigationBarTitleFontSize = 15.0;
 
 static NSString *const FeedIcon     = @"feed-icon";
+static NSString *const SearchIcon   = @"search-icon";
 static NSString *const MapIcon      = @"map-icon";
 static NSString *const ProfileIcon  = @"profile-icon";
 
@@ -37,10 +39,11 @@ static NSString *const ProfileIcon  = @"profile-icon";
  */
 @property (nonatomic,readonly) UITabBarController *tabBarController;
 
-@property (nonatomic,readonly) FeedViewController *feedViewController;
-@property (nonatomic,readonly) MapViewController *mapViewController;
-@property (nonatomic,readonly) ProfileViewController *profileViewController;
-@property (nonatomic,readonly) OAuthPromptViewController *oauthPromptViewController;
+@property (nonatomic,readonly) FeedViewController           *feedViewController;
+@property (nonatomic,readonly) SearchViewController         *searchViewController;
+@property (nonatomic,readonly) MapViewController            *mapViewController;
+@property (nonatomic,readonly) ProfileViewController        *profileViewController;
+@property (nonatomic,readonly) OAuthPromptViewController    *oauthPromptViewController;
 
 @end
 
@@ -64,6 +67,7 @@ static NSString *const ProfileIcon  = @"profile-icon";
 
 @synthesize tabBarController            = _tabBarController;
 @synthesize feedViewController          = _feedViewController;
+@synthesize searchViewController        = _searchViewController;
 @synthesize mapViewController           = _mapViewController;
 @synthesize profileViewController       = _profileViewController;
 @synthesize oauthPromptViewController   = _oauthPromptViewController;
@@ -75,6 +79,15 @@ static NSString *const ProfileIcon  = @"profile-icon";
         _feedViewController = [FeedViewController new];
     }
     return _feedViewController;
+}
+
+- (SearchViewController *)searchViewController
+{
+    if (_searchViewController == nil)
+    {
+        _searchViewController = [SearchViewController new];
+    }
+    return _searchViewController;
 }
 
 - (MapViewController *)mapViewController
@@ -160,12 +173,24 @@ static NSString *const ProfileIcon  = @"profile-icon";
             [InstagramManager.sharedManager
                 getSelfUserFeedWithSuccess:^(MediaFeed *feed)
                 {
+                    [self.mapViewController setFeed:feed];
                     [self.feedViewController setFeed:feed];
                 }
                 failure:^(NSError *error)
                 {
                 }
             ];
+        }
+    ];
+    
+    [InstagramManager.sharedManager
+        getSelfUserDetailsWithSuccess:^(InstagramUser *user)
+        {
+            [self.profileViewController setUser:user];
+        }
+        failure:^(NSError *error)
+        {
+            
         }
     ];
 }
@@ -187,9 +212,26 @@ static NSString *const ProfileIcon  = @"profile-icon";
         [_tabBarController
             setViewControllers:
             @[
-                [self controllerWithRootController:self.mapViewController],
-                [self controllerWithRootController:self.feedViewController],
-                self.profileViewController
+                [self
+                    controllerWithRootViewController:self.mapViewController
+                    andBarTintColor:DarkGreyColor
+                    andTintColor:UIColor.whiteColor
+                ],
+                [self
+                    controllerWithRootViewController:self.feedViewController
+                    andBarTintColor:DarkGreyColor
+                    andTintColor:UIColor.whiteColor
+                ],
+                [self
+                    controllerWithRootViewController:self.searchViewController
+                    andBarTintColor:DarkGreyColor
+                    andTintColor:UIColor.whiteColor
+                ],
+                [self
+                    controllerWithRootViewController:self.profileViewController
+                    andBarTintColor:UIColor.whiteColor
+                    andTintColor:DarkGreyColor
+                ]
             ]
         ];
         
@@ -208,6 +250,9 @@ static NSString *const ProfileIcon  = @"profile-icon";
                     tabBarItem.image = [UIImage imageNamed:FeedIcon];
                     break;
                 case 2:
+                    tabBarItem.image = [UIImage imageNamed:SearchIcon];
+                    break;
+                case 3:
                     tabBarItem.image = [UIImage imageNamed:ProfileIcon];
                     break;
             }
@@ -230,20 +275,22 @@ static NSString *const ProfileIcon  = @"profile-icon";
 
 /******************************************************************************/
 
-- (UINavigationController *)controllerWithRootController:(UIViewController *)controller
+- (UINavigationController *)controllerWithRootViewController:(UIViewController*)controller
+    andBarTintColor:(UIColor *)barTintColor
+    andTintColor:(UIColor *)tintColor
 {
     UINavigationController *navigationController = [[UINavigationController alloc]
         initWithRootViewController:controller
     ];
-    navigationController.navigationBar.barTintColor         = DarkGreyColor;
-    navigationController.navigationBar.tintColor            = UIColor.whiteColor;
+    navigationController.navigationBar.barTintColor         = barTintColor;
+    navigationController.navigationBar.tintColor            = tintColor;
     navigationController.navigationBar.titleTextAttributes  =
     @{
         NSFontAttributeName             :   [UIFont
-                                                fontWithName:AvenirBlackFont
+                                                fontWithName:AvenirNextDemiBoldFont
                                                 size:NavigationBarTitleFontSize
                                             ],
-        NSForegroundColorAttributeName  :   UIColor.whiteColor
+        NSForegroundColorAttributeName  :   tintColor
     };
     return navigationController;
 }

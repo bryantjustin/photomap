@@ -317,7 +317,7 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
                 @[
                     [NSSortDescriptor
                         sortDescriptorWithKey:CreatedDateEntityAttributeName
-                        ascending:YES
+                        ascending:NO
                     ]
                 ]
             ];

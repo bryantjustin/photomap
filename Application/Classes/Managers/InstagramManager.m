@@ -23,7 +23,6 @@
 {
     InstagramService            *_service;
     InstagramStoreCoordinator   *_storeCoordinator;
-    AFNetworkReachabilityStatus _status;
 }
 
 /******************************************************************************/
@@ -62,18 +61,7 @@
 
 - (BOOL)shouldUseCache
 {
-    BOOL shouldUseCache = NO;
-    switch (_status)
-    {
-        case AFNetworkReachabilityStatusUnknown:
-        case AFNetworkReachabilityStatusNotReachable:
-            shouldUseCache = YES;
-            break;
-        default:
-            break;
-    }
-    
-    return shouldUseCache;
+    return !AFNetworkReachabilityManager.sharedManager.isReachable;
 }
 
 /******************************************************************************/
@@ -101,7 +89,7 @@
     [AFNetworkReachabilityManager.sharedManager
         setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status)
         {
-            _status = status;
+            // TODO: Handle internet connection.
         }
     ];
 }

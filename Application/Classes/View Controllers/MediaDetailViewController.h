@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CommentsViewController : UIViewController
+@class InstagramMedia;
+
+@interface MediaDetailViewController : UIViewController
 <
     UITableViewDataSource,
     UITableViewDelegate
 >
-+ (instancetype)controllerWithComments:(NSArray *)comments;
+
++ (instancetype)controllerWithMedia:(InstagramMedia *)media;
 
 @end

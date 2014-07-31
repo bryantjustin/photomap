@@ -36,14 +36,21 @@
 		1459A36919887F48005C6517 /* ImageStoreCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1459A36819887F48005C6517 /* ImageStoreCoordinator.m */; };
 		145A00AA19853F21000E1B11 /* KeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A00A4198533C7000E1B11 /* KeychainManager.m */; };
 		1485059A1988AB9200C96108 /* MediaFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 148505991988AB9200C96108 /* MediaFeed.m */; };
-		148505A11988C6CD00C96108 /* ImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 148505A01988C6CD00C96108 /* ImageTableViewCell.m */; };
-		148505A31988EBFD00C96108 /* ImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 148505A21988EBFD00C96108 /* ImageTableViewCell.xib */; };
+		148505A11988C6CD00C96108 /* MediaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 148505A01988C6CD00C96108 /* MediaTableViewCell.m */; };
+		148505A31988EBFD00C96108 /* MediaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 148505A21988EBFD00C96108 /* MediaTableViewCell.xib */; };
 		148505A71988EDAC00C96108 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 148505A61988EDAC00C96108 /* TableViewCell.m */; };
-		148505B01988F65100C96108 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 148505AE1988F65100C96108 /* CommentsViewController.m */; };
-		148505B11988F65100C96108 /* CommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 148505AF1988F65100C96108 /* CommentsViewController.xib */; };
+		148505B01988F65100C96108 /* MediaDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 148505AE1988F65100C96108 /* MediaDetailViewController.m */; };
+		148505B11988F65100C96108 /* MediaDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 148505AF1988F65100C96108 /* MediaDetailViewController.xib */; };
 		148505B41989030F00C96108 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 148505B31989030F00C96108 /* CommentTableViewCell.m */; };
 		148505B61989031E00C96108 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 148505B51989031E00C96108 /* CommentTableViewCell.xib */; };
 		14A36E961987B92500268F1D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A36E951987B92500268F1D /* MapKit.framework */; };
+		14F02EAA1989D98F006AB5D0 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F02EA81989D98F006AB5D0 /* SearchViewController.m */; };
+		14F02EAB1989D98F006AB5D0 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F02EA91989D98F006AB5D0 /* SearchViewController.xib */; };
+		14F02EAE198A3BC0006AB5D0 /* FeedHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F02EAD198A3BC0006AB5D0 /* FeedHeaderView.m */; };
+		14F02EB4198A3BE3006AB5D0 /* View.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F02EB3198A3BE3006AB5D0 /* View.m */; };
+		14F02EB6198A3C94006AB5D0 /* FeedHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F02EB5198A3C94006AB5D0 /* FeedHeaderView.xib */; };
+		14F02EB9198A5BDB006AB5D0 /* MapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F02EB8198A5BDB006AB5D0 /* MapAnnotationView.m */; };
+		14F02EBC198A5C91006AB5D0 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F02EBB198A5C91006AB5D0 /* MapAnnotation.m */; };
 		14FFD48D1985A1D900A57FC6 /* PhotoMapModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14FFD48B1985A1D900A57FC6 /* PhotoMapModel.xcdatamodeld */; };
 		14FFD4901985B0C500A57FC6 /* InstagramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FFD48F1985B0C500A57FC6 /* InstagramManager.m */; };
 		14FFD49E1985B4DC00A57FC6 /* InstagramStoreCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FFD49D1985B4DC00A57FC6 /* InstagramStoreCoordinator.m */; };
@@ -113,18 +120,30 @@
 		145A00A4198533C7000E1B11 /* KeychainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeychainManager.m; path = Managers/KeychainManager.m; sourceTree = "<group>"; };
 		148505981988AB9200C96108 /* MediaFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MediaFeed.h; path = Models/MediaFeed.h; sourceTree = "<group>"; };
 		148505991988AB9200C96108 /* MediaFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MediaFeed.m; path = Models/MediaFeed.m; sourceTree = "<group>"; };
-		1485059F1988C6CD00C96108 /* ImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTableViewCell.h; sourceTree = "<group>"; };
-		148505A01988C6CD00C96108 /* ImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTableViewCell.m; sourceTree = "<group>"; };
-		148505A21988EBFD00C96108 /* ImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageTableViewCell.xib; sourceTree = "<group>"; };
+		1485059F1988C6CD00C96108 /* MediaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTableViewCell.h; sourceTree = "<group>"; };
+		148505A01988C6CD00C96108 /* MediaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaTableViewCell.m; sourceTree = "<group>"; };
+		148505A21988EBFD00C96108 /* MediaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaTableViewCell.xib; sourceTree = "<group>"; };
 		148505A51988EDAC00C96108 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		148505A61988EDAC00C96108 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
-		148505AD1988F65100C96108 /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
-		148505AE1988F65100C96108 /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
-		148505AF1988F65100C96108 /* CommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsViewController.xib; sourceTree = "<group>"; };
+		148505AD1988F65100C96108 /* MediaDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaDetailViewController.h; sourceTree = "<group>"; };
+		148505AE1988F65100C96108 /* MediaDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaDetailViewController.m; sourceTree = "<group>"; };
+		148505AF1988F65100C96108 /* MediaDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaDetailViewController.xib; sourceTree = "<group>"; };
 		148505B21989030F00C96108 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
 		148505B31989030F00C96108 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 		148505B51989031E00C96108 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		14A36E951987B92500268F1D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		14F02EA71989D98F006AB5D0 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		14F02EA81989D98F006AB5D0 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		14F02EA91989D98F006AB5D0 /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
+		14F02EAC198A3BC0006AB5D0 /* FeedHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedHeaderView.h; path = Views/FeedHeaderView.h; sourceTree = "<group>"; };
+		14F02EAD198A3BC0006AB5D0 /* FeedHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedHeaderView.m; path = Views/FeedHeaderView.m; sourceTree = "<group>"; };
+		14F02EB2198A3BE3006AB5D0 /* View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = View.h; path = Views/View.h; sourceTree = "<group>"; };
+		14F02EB3198A3BE3006AB5D0 /* View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = View.m; path = Views/View.m; sourceTree = "<group>"; };
+		14F02EB5198A3C94006AB5D0 /* FeedHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FeedHeaderView.xib; path = Views/FeedHeaderView.xib; sourceTree = "<group>"; };
+		14F02EB7198A5BDB006AB5D0 /* MapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapAnnotationView.h; path = Views/MapAnnotationView.h; sourceTree = "<group>"; };
+		14F02EB8198A5BDB006AB5D0 /* MapAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapAnnotationView.m; path = Views/MapAnnotationView.m; sourceTree = "<group>"; };
+		14F02EBA198A5C91006AB5D0 /* MapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapAnnotation.h; path = Models/MapAnnotation.h; sourceTree = "<group>"; };
+		14F02EBB198A5C91006AB5D0 /* MapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapAnnotation.m; path = Models/MapAnnotation.m; sourceTree = "<group>"; };
 		14FFD48C1985A1D900A57FC6 /* PhotoMapModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PhotoMapModel.xcdatamodel; sourceTree = "<group>"; };
 		14FFD48E1985B0C500A57FC6 /* InstagramManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstagramManager.h; path = Managers/InstagramManager.h; sourceTree = "<group>"; };
 		14FFD48F1985B0C500A57FC6 /* InstagramManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstagramManager.m; path = Managers/InstagramManager.m; sourceTree = "<group>"; };
@@ -289,9 +308,12 @@
 				1451D6DF1983FD45003380BC /* ProfileViewController.h */,
 				1451D6E01983FD45003380BC /* ProfileViewController.m */,
 				1451D6E11983FD45003380BC /* ProfileViewController.xib */,
-				148505AD1988F65100C96108 /* CommentsViewController.h */,
-				148505AE1988F65100C96108 /* CommentsViewController.m */,
-				148505AF1988F65100C96108 /* CommentsViewController.xib */,
+				148505AD1988F65100C96108 /* MediaDetailViewController.h */,
+				148505AE1988F65100C96108 /* MediaDetailViewController.m */,
+				148505AF1988F65100C96108 /* MediaDetailViewController.xib */,
+				14F02EA71989D98F006AB5D0 /* SearchViewController.h */,
+				14F02EA81989D98F006AB5D0 /* SearchViewController.m */,
+				14F02EA91989D98F006AB5D0 /* SearchViewController.xib */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -333,6 +355,8 @@
 		145A00A61985363C000E1B11 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				14F02EBA198A5C91006AB5D0 /* MapAnnotation.h */,
+				14F02EBB198A5C91006AB5D0 /* MapAnnotation.m */,
 				142C00C119857734000BFEB8 /* Instagram */,
 				148505981988AB9200C96108 /* MediaFeed.h */,
 				148505991988AB9200C96108 /* MediaFeed.m */,
@@ -344,6 +368,13 @@
 			isa = PBXGroup;
 			children = (
 				1485059E1988C6CD00C96108 /* TableViewCells */,
+				14F02EAC198A3BC0006AB5D0 /* FeedHeaderView.h */,
+				14F02EAD198A3BC0006AB5D0 /* FeedHeaderView.m */,
+				14F02EB5198A3C94006AB5D0 /* FeedHeaderView.xib */,
+				14F02EB7198A5BDB006AB5D0 /* MapAnnotationView.h */,
+				14F02EB8198A5BDB006AB5D0 /* MapAnnotationView.m */,
+				14F02EB2198A3BE3006AB5D0 /* View.h */,
+				14F02EB3198A3BE3006AB5D0 /* View.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -351,9 +382,9 @@
 		1485059E1988C6CD00C96108 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				1485059F1988C6CD00C96108 /* ImageTableViewCell.h */,
-				148505A01988C6CD00C96108 /* ImageTableViewCell.m */,
-				148505A21988EBFD00C96108 /* ImageTableViewCell.xib */,
+				1485059F1988C6CD00C96108 /* MediaTableViewCell.h */,
+				148505A01988C6CD00C96108 /* MediaTableViewCell.m */,
+				148505A21988EBFD00C96108 /* MediaTableViewCell.xib */,
 				148505A51988EDAC00C96108 /* TableViewCell.h */,
 				148505A61988EDAC00C96108 /* TableViewCell.m */,
 				148505B21989030F00C96108 /* CommentTableViewCell.h */,
@@ -487,14 +518,16 @@
 			files = (
 				1451D6F1198423BE003380BC /* OAuthPromptViewController.xib in Resources */,
 				1451D6E31983FD45003380BC /* ProfileViewController.xib in Resources */,
-				148505B11988F65100C96108 /* CommentsViewController.xib in Resources */,
+				148505B11988F65100C96108 /* MediaDetailViewController.xib in Resources */,
 				1451D6A11983EA03003380BC /* Images.xcassets in Resources */,
 				1451D6DE1983FD2F003380BC /* MapViewController.xib in Resources */,
 				1451D6901983EA03003380BC /* InfoPlist.strings in Resources */,
-				148505A31988EBFD00C96108 /* ImageTableViewCell.xib in Resources */,
+				148505A31988EBFD00C96108 /* MediaTableViewCell.xib in Resources */,
+				14F02EAB1989D98F006AB5D0 /* SearchViewController.xib in Resources */,
 				1451D6D11983FCF0003380BC /* FeedViewController.xib in Resources */,
 				1451D6CC1983FBAC003380BC /* RootViewController.xib in Resources */,
 				148505B61989031E00C96108 /* CommentTableViewCell.xib in Resources */,
+				14F02EB6198A3C94006AB5D0 /* FeedHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,27 +580,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				145A00AA19853F21000E1B11 /* KeychainManager.m in Sources */,
+				14F02EB4198A3BE3006AB5D0 /* View.m in Sources */,
 				14FFD4BB1985CE6800A57FC6 /* InstagramUser.m in Sources */,
 				1459A36619887ED4005C6517 /* ImageDownloader.m in Sources */,
 				148505B41989030F00C96108 /* CommentTableViewCell.m in Sources */,
+				14F02EAA1989D98F006AB5D0 /* SearchViewController.m in Sources */,
+				14F02EBC198A5C91006AB5D0 /* MapAnnotation.m in Sources */,
 				1451D6F0198423BE003380BC /* OAuthPromptViewController.m in Sources */,
 				1451D6EA19840E3A003380BC /* InstagramService.m in Sources */,
 				1451D6C51983EE99003380BC /* AppDelegate.m in Sources */,
 				1451D6921983EA03003380BC /* main.m in Sources */,
 				1451D6D01983FCF0003380BC /* FeedViewController.m in Sources */,
 				1459A36919887F48005C6517 /* ImageStoreCoordinator.m in Sources */,
+				14F02EAE198A3BC0006AB5D0 /* FeedHeaderView.m in Sources */,
 				1451D6DD1983FD2F003380BC /* MapViewController.m in Sources */,
 				1451D6E21983FD45003380BC /* ProfileViewController.m in Sources */,
 				14FFD4B81985CE6800A57FC6 /* InstagramComment.m in Sources */,
 				1485059A1988AB9200C96108 /* MediaFeed.m in Sources */,
-				148505B01988F65100C96108 /* CommentsViewController.m in Sources */,
+				148505B01988F65100C96108 /* MediaDetailViewController.m in Sources */,
 				148505A71988EDAC00C96108 /* TableViewCell.m in Sources */,
 				14FFD4901985B0C500A57FC6 /* InstagramManager.m in Sources */,
 				1451D6CB1983FBAC003380BC /* RootViewController.m in Sources */,
 				142C00C41985776B000BFEB8 /* InstagramPagination.m in Sources */,
+				14F02EB9198A5BDB006AB5D0 /* MapAnnotationView.m in Sources */,
 				14FFD4A91985BFAF00A57FC6 /* CoreDataStoreCoordinator.m in Sources */,
 				14FFD4CA1986676E00A57FC6 /* InstagramObjectMapper.m in Sources */,
-				148505A11988C6CD00C96108 /* ImageTableViewCell.m in Sources */,
+				148505A11988C6CD00C96108 /* MediaTableViewCell.m in Sources */,
 				14FFD48D1985A1D900A57FC6 /* PhotoMapModel.xcdatamodeld in Sources */,
 				1459A36319887CBC005C6517 /* MediaManager.m in Sources */,
 				14FFD4B51985CE6700A57FC6 /* InstagramMedia.m in Sources */,

@@ -33,8 +33,11 @@ static NSString *const AccessTokenKey           = @"access_token";
 static NSString *const ClientIDTokenKey         = @"client_id";
 static NSString *const DataKey                  = @"data";
 static NSString *const PaginationKey            = @"pagination";
+static NSString *const CountKey                 = @"count";
+static NSString *const MaxIDKey                   = @"max_id";
+static NSString *const MinIDKey                 = @"min_id";
 
-
+static NSInteger const FeedCount = 20;
 
 @interface InstagramService ()
 
@@ -269,7 +272,12 @@ static NSString *const PaginationKey            = @"pagination";
     failure:(InstagramServiceErrorBlock)failure
 {
     NSString *perecentEscapedEndPoint = [SelfUserFeedEndpoint stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *parameters = [self prepareParameters:nil];
+    NSDictionary *parameters = [self
+        prepareParameters:
+        @{
+            CountKey:@(FeedCount)
+        }
+    ];
     
     [_requestOperationManager
         GET:perecentEscapedEndPoint

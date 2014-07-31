@@ -8,10 +8,11 @@
 
 #import "FeedViewController.h"
 
-#import "CommentsViewController.h"
-#import "ImageTableViewCell.h"
+#import "MediaDetailViewController.h"
+#import "FeedHeaderView.h"
 #import "InstagramMedia.h"
 #import "MediaFeed.h"
+#import "MediaTableViewCell.h"
 
 NS_ENUM(NSInteger, RowType)
 {
@@ -21,12 +22,14 @@ NS_ENUM(NSInteger, RowType)
 
 static NSInteger const RowsPerSection = 2;
 
+static CGFloat const SectionHeight      = 50;
 static CGFloat const RowMediaHeight     = 320.0;
-static CGFloat const RowCommentHeight   = 50;
+static CGFloat const RowCommentHeight   = 100;
 static CGFloat const CommentRowFontSize = 12.;
 
 static NSString *const CommentButtonCellViewIdentifier  = @"CommentButtonCellViewIdentifier";
-static NSString *const ImageCellViewIdentifier          = @"ImageCellViewIdentifier";
+static NSString *const MediaCellViewIdentifier          = @"MediaCellViewIdentifier";
+
 
 
 @interface FeedViewController ()
@@ -99,6 +102,7 @@ static NSString *const ImageCellViewIdentifier          = @"ImageCellViewIdentif
 {
     InstagramMedia *media = [self mediaFromIndexPath:indexPath];
     UITableViewCell *viewCell = nil;
+
     switch (indexPath.row)
     {
         case RowTypeMedia:
@@ -125,28 +129,16 @@ static NSString *const ImageCellViewIdentifier          = @"ImageCellViewIdentif
 
 - (UITableViewCell *)mediaTableViewCellForMedia:(InstagramMedia *)media
 {
-    UITableViewCell *viewCell = nil;
-    switch (media.type.integerValue)
+    MediaTableViewCell *mediaViewCell = (MediaTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:MediaCellViewIdentifier];
+    if (mediaViewCell == nil)
     {
-        case InstagramMediaTypeImage:
-        {
-            ImageTableViewCell *imageViewCell = (ImageTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:ImageCellViewIdentifier];
-            if (imageViewCell == nil)
-            {
-                imageViewCell = [ImageTableViewCell new];
-                imageViewCell.reuseIdentifier = ImageCellViewIdentifier;
-            }
-            
-            [imageViewCell setURL:media.standardResolutionImageURL];
-            viewCell = imageViewCell;
-            
-            break;
-        }
-        case InstagramMediaTypeVideo:
-            break;
+        mediaViewCell = [MediaTableViewCell new];
+        mediaViewCell.reuseIdentifier = MediaCellViewIdentifier;
     }
 
-    return viewCell;
+    [mediaViewCell setMedia:media];
+
+    return mediaViewCell;
 }
 
 - (UITableViewCell *)commentTableViewCellForMedia:(InstagramMedia *)media
@@ -159,7 +151,7 @@ static NSString *const ImageCellViewIdentifier          = @"ImageCellViewIdentif
             reuseIdentifier:CommentButtonCellViewIdentifier
         ];
         viewCell.textLabel.font = [UIFont
-            fontWithName:AvenirBlackFont
+            fontWithName:AvenirNextDemiBoldFont
             size:CommentRowFontSize
         ];
         viewCell.textLabel.textColor = DarkGreyColor;
@@ -168,13 +160,13 @@ static NSString *const ImageCellViewIdentifier          = @"ImageCellViewIdentif
     NSInteger commentCount = media.comments.count;
     if (commentCount > 0)
     {
-        viewCell.textLabel.text = [NSString stringWithFormat:@"COMMENTS (%lu)", (long)commentCount];
+        viewCell.textLabel.text = [NSString stringWithFormat:@"Comments (%lu)", (long)commentCount];
         viewCell.selectionStyle = UITableViewCellSelectionStyleDefault;
         viewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     else
     {
-        viewCell.textLabel.text = @"NO COMMENTS";
+        viewCell.textLabel.text = @"No comments";
         viewCell.selectionStyle = UITableViewCellSelectionStyleNone;
         viewCell.accessoryType = UITableViewCellAccessoryNone;
     }
@@ -189,21 +181,29 @@ static NSString *const ImageCellViewIdentifier          = @"ImageCellViewIdentif
 #pragma mark - UITableViewDelegate Methods
 
 /******************************************************************************/
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    UIImageView *imageView = 
-//}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    FeedHeaderView *headerView = [FeedHeaderView new];
+    [headerView setMedia:[self mediaFromSection:section]];
+    return headerView;
+}
 
 - (void)tableView:(UITableView *)tableView
     didEndDisplayingCell:(UITableViewCell *)cell
     forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([cell.reuseIdentifier isEqualToString:ImageCellViewIdentifier])
+    if ([cell.reuseIdentifier isEqualToString:MediaCellViewIdentifier])
     {
-        ImageTableViewCell *imageTableViewCell = (ImageTableViewCell *)cell;
-        [imageTableViewCell setURL:nil];
+        MediaTableViewCell *mediaTableViewCell = (MediaTableViewCell *)cell;
+        [mediaTableViewCell setMedia:nil];
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView
+    heightForHeaderInSection:(NSInteger)section
+{
+    return SectionHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
@@ -220,7 +220,7 @@ static NSString *const ImageCellViewIdentifier          = @"ImageCellViewIdentif
             heightForRow = RowCommentHeight;
             break;
     }
-    
+
     return heightForRow;
 }
 
@@ -237,7 +237,7 @@ static NSString *const ImageCellViewIdentifier          = @"ImageCellViewIdentif
     if (hasComments)
     {
         [self.navigationController
-            pushViewController:[CommentsViewController controllerWithComments:media.comments.allObjects]
+            pushViewController:[MediaDetailViewController controllerWithMedia:media]
             animated:YES
         ];
     }
@@ -253,7 +253,12 @@ static NSString *const ImageCellViewIdentifier          = @"ImageCellViewIdentif
 
 - (InstagramMedia *)mediaFromIndexPath:(NSIndexPath *)indexPath
 {
-    return self.feed.media[indexPath.section];
+    return [self mediaFromSection:indexPath.section];
+}
+
+- (InstagramMedia *)mediaFromSection:(NSInteger)section
+{
+    return self.feed.media[section];
 }
 
 @end

@@ -20,11 +20,11 @@
                             <constraint firstAttribute="height" constant="21" id="3fK-lD-jiI"/>
                             <constraint firstAttribute="width" constant="290" id="jgQ-D4-svE"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
+                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="13"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="b7p-td-5AN">
-                        <rect key="frame" x="15" y="36" width="290" height="17"/>
+                        <rect key="frame" x="15" y="41" width="290" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="290" id="AvY-ky-Sba"/>
@@ -33,7 +33,7 @@
                             <fragment content="Label">
                                 <attributes>
                                     <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <font key="NSFont" size="12" name="Avenir-Book"/>
+                                    <font key="NSFont" size="13" name="AvenirNext-Regular"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                 </attributes>
                             </fragment>
@@ -42,7 +42,7 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="b7p-td-5AN" firstAttribute="top" secondItem="X0N-bu-fyB" secondAttribute="bottom" id="PzP-Gd-BUO"/>
+                    <constraint firstItem="b7p-td-5AN" firstAttribute="top" secondItem="X0N-bu-fyB" secondAttribute="bottom" constant="5" id="PzP-Gd-BUO"/>
                     <constraint firstItem="b7p-td-5AN" firstAttribute="leading" secondItem="Qqd-99-6qZ" secondAttribute="leading" constant="15" id="WrX-O5-XXm"/>
                     <constraint firstItem="X0N-bu-fyB" firstAttribute="top" secondItem="Qqd-99-6qZ" secondAttribute="top" constant="15" id="d5W-uf-ypc"/>
                     <constraint firstItem="X0N-bu-fyB" firstAttribute="leading" secondItem="Qqd-99-6qZ" secondAttribute="leading" constant="15" id="evO-pM-KYG"/>
