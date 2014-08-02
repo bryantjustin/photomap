@@ -155,6 +155,7 @@ static NSString *const SpacerCellViewIdentifier         = @"SpacerCellViewIdenti
                 initWithStyle:UITableViewCellStyleDefault
                 reuseIdentifier:SpacerCellViewIdentifier
             ];
+            viewCell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
     }
     
@@ -199,19 +200,18 @@ static NSString *const SpacerCellViewIdentifier         = @"SpacerCellViewIdenti
             size:CommentRowFontSize
         ];
         viewCell.textLabel.textColor = DarkGreyColor;
+        viewCell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     NSInteger commentCount = media.comments.count;
     if (commentCount > 0)
     {
         viewCell.textLabel.text = [NSString stringWithFormat:@"Comments (%lu)", (long)commentCount];
-        viewCell.selectionStyle = UITableViewCellSelectionStyleDefault;
         viewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     else
     {
         viewCell.textLabel.text = @"No comments";
-        viewCell.selectionStyle = UITableViewCellSelectionStyleNone;
         viewCell.accessoryType = UITableViewCellAccessoryNone;
     }
     
@@ -232,6 +232,7 @@ static NSString *const SpacerCellViewIdentifier         = @"SpacerCellViewIdenti
             size:CommentRowFontSize
         ];
         viewCell.textLabel.textColor = DarkGreyColor;
+        viewCell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     viewCell.textLabel.numberOfLines    = 3;
     viewCell.textLabel.text             = media.caption.text;
@@ -324,6 +325,11 @@ static NSString *const SpacerCellViewIdentifier         = @"SpacerCellViewIdenti
 - (void)tableView:(UITableView *)tableView
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == RowTypeSpacer)
+    {
+        return;
+    }
+    
     [tableView
         deselectRowAtIndexPath:indexPath
         animated:YES
