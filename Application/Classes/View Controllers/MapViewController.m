@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 bryantjustin.com. All rights reserved.
 //
 
-#import "InstagramMedia.h"
 #import "MapViewController.h"
+
+#import "InstagramManager.h"
+#import "InstagramMedia.h"
 #import "MapAnnotation.h"
 #import "MapAnnotationView.h"
 #import "MediaFeed.h"
@@ -25,6 +27,7 @@
 @implementation MapViewController
 {
     BOOL _didZoomInToUser;
+    BOOL _didRequestToUpdateFeed;
     NSMutableDictionary *_annotationsByMediaID;
 }
 
@@ -42,6 +45,7 @@
 {
     [super viewDidLoad];
     [self prepareMap];
+    [self prepareRefreshButton];
 }
 
 @synthesize feed = _feed;
@@ -114,6 +118,36 @@
     }
 }
 
+- (void)prepareRefreshButton
+{
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc]
+        initWithImage:[UIImage imageNamed:@"refresh-icon"]
+        style:UIBarButtonItemStylePlain
+        target:self
+        action:@selector(refreshFeed)
+    ];
+    
+    self.navigationItem.rightBarButtonItem = barButtonItem;
+}
+
+- (void)refreshFeed
+{
+    if (!_didRequestToUpdateFeed)
+    {
+        _didRequestToUpdateFeed = YES;
+        [InstagramManager.sharedManager
+            getLatestForMediaFeed:self.feed
+            success:^(MediaFeed *feed)
+            {
+                _didRequestToUpdateFeed = NO;
+            }
+            failure:^(NSError *error)
+            {
+                _didRequestToUpdateFeed = NO;
+            }
+        ];
+    }
+}
 
 
 /******************************************************************************/

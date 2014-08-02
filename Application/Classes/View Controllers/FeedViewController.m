@@ -116,11 +116,40 @@ static CGFloat const CaptionWidth       = 290.0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Do any additional setup after loading the view from its nib.
+    [self prepareRefreshButton];
 }
 
+- (void)prepareRefreshButton
+{
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc]
+        initWithImage:[UIImage imageNamed:@"refresh-icon"]
+        style:UIBarButtonItemStylePlain
+        target:self
+        action:@selector(refreshFeed)
+    ];
+    
+    self.navigationItem.rightBarButtonItem = barButtonItem;
+}
 
+- (void)refreshFeed
+{
+    if (!_didRequestToUpdateFeed)
+    {
+        _didRequestToUpdateFeed = YES;
+        [InstagramManager.sharedManager
+            getLatestForMediaFeed:self.feed
+            success:^(MediaFeed *feed)
+            {
+                _didRequestToUpdateFeed = NO;
+                [self.tableView reloadData];
+            }
+            failure:^(NSError *error)
+            {
+                _didRequestToUpdateFeed = NO;
+            }
+        ];
+    }
+}
 
 /******************************************************************************/
 
