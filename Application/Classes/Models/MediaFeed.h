@@ -7,16 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class InstagramPagination;
+#import "InstagramPagination.h"
 
 @interface MediaFeed : NSObject
+<
+    Paging
+>
 
 + (instancetype)feedWithMedia:(NSArray *)array;
 
-@property (readonly,copy) NSArray *media;
-@property (strong) InstagramPagination *pagination;
+@property (nonatomic,readonly,copy) NSArray *media;
+@property (nonatomic,strong) InstagramPagination *pagination;
 
 - (void)addMedia:(NSArray *)media;
+
+- (void)updateWithLatestObjects:(NSArray *)objects;
+
+- (void)updateWithNextPageOfObjects:(NSArray *)objects
+    andPagination:(InstagramPagination *)pagination;
 
 @end

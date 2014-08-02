@@ -8,6 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+@class InstagramPagination;
+
+@protocol Paging <NSObject>
+
+@property (nonatomic,strong) InstagramPagination *pagination;
+
+- (void)updateWithNextPageOfObjects:(NSArray *)objects
+    andPagination:(InstagramPagination *)pagination;
+
+@end
+
 @interface InstagramPagination : NSObject
 
 @property (nonatomic,strong) NSURL* nextURL;

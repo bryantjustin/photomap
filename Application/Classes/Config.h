@@ -68,4 +68,14 @@ static NSString *const kDidSuccessfullyAuthenticate     = @"kDidSuccessfullyAuth
 static NSString *const kDidFailToAuthenticate           = @"kDidFailToAuthenticate";
 static NSString *const kDidReceiveAuthenticationError   = @"kDidReceiveAuthenticationError";
 
+static NSString *const kFeedDidUpdate                   = @"kFeedDidUpdate";
 
+
+
+/******************************************************************************/
+
+#pragma mark - Event Keys
+
+/******************************************************************************/
+
+static NSString *const UpdatedObjectsKey = @"UpdatedObjectsKey";

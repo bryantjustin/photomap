@@ -19,7 +19,9 @@ static NSString *const RedirectURI              = @"photomap://authentication/";
 
 static NSString *const APIBaseURL               = @"https://api.instagram.com/v1/";
 static NSString *const SelfUserDetailEndpoint   = @"users/self";
-static NSString *const SelfUserFeedEndpoint         = @"users/self/feed";
+static NSString *const SelfUserFeedEndpoint     = @"users/self/feed";
+static NSString *const TagsSearchEndpoint       = @"tags/search";
+static NSString *const TagsMediaEndpoint        = @"tags/%@/media/recent";
 
 static NSString *const ClientID                 = @"75ce3fb35c934fe7b76734f82f54b898";
 static NSString *const ClientSecret             = @"b5ba513838544b8db7465cf51012b615";
@@ -34,10 +36,12 @@ static NSString *const ClientIDTokenKey         = @"client_id";
 static NSString *const DataKey                  = @"data";
 static NSString *const PaginationKey            = @"pagination";
 static NSString *const CountKey                 = @"count";
-static NSString *const MaxIDKey                   = @"max_id";
+static NSString *const MaxIDKey                 = @"max_id";
 static NSString *const MinIDKey                 = @"min_id";
+static NSString *const QKey                     = @"q";
 
-static NSInteger const FeedCount = 20;
+static NSInteger const FeedCount = 25;
+
 
 @interface InstagramService ()
 
@@ -293,6 +297,117 @@ static NSInteger const FeedCount = 20;
     ];
 }
 
+- (void)getLatestSelfUserFeedWithMinID:(NSString *)minID
+    success:(InstagramServiceDataResponseBlock)success
+    failure:(InstagramServiceErrorBlock)failure
+{
+    NSString *perecentEscapedEndPoint = [SelfUserFeedEndpoint stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *parameters = [self
+        prepareParameters:
+        @{
+            MinIDKey:minID
+        }
+    ];
+    
+    [_requestOperationManager
+        GET:perecentEscapedEndPoint
+        parameters:parameters
+        success:^(AFHTTPRequestOperation *operation, id response)
+        {
+            success(response[DataKey]);
+        }
+        failure:^(AFHTTPRequestOperation *operation, NSError *error)
+        {
+            failure(error);
+        }
+    ];
+}
+
+- (void)getNextPageForFeed:(id<Paging>)pagingFeed
+    success:(InstagramServiceDataAndPaginationResponseBlock)success
+    failure:(InstagramServiceErrorBlock)failure
+{
+    if (pagingFeed.pagination)
+    {
+        [_requestOperationManager
+            GET:pagingFeed.pagination.nextURL.absoluteString
+            parameters:nil
+            success:^(AFHTTPRequestOperation *operation, id response)
+            {
+                success(response[DataKey], response[PaginationKey]);
+            }
+            failure:^(AFHTTPRequestOperation *operation, NSError *error)
+            {
+                failure(error);
+            }
+        ];
+    }
+    else
+    {
+        success(nil, nil);
+    }
+}
+
+- (void)getTagsForQuery:(NSString *)query
+    success:(InstagramServiceDataResponseBlock)success
+    failure:(InstagramServiceErrorBlock)failure
+{
+    NSString *perecentEscapedEndPoint = [TagsSearchEndpoint stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *parameters = [self
+        prepareParameters:
+        @{
+            QKey:query
+        }
+    ];
+    
+    [_requestOperationManager
+        GET:perecentEscapedEndPoint
+        parameters:parameters
+        success:^(AFHTTPRequestOperation *operation, id response)
+        {
+            success(response[DataKey]);
+        }
+        failure:^(AFHTTPRequestOperation *operation, NSError *error)
+        {
+            failure(error);
+        }
+    ];
+}
+
+- (void)getMediaFeedForTag:(NSString *)tag
+    success:(InstagramServiceDataAndPaginationResponseBlock)success
+    failure:(InstagramServiceErrorBlock)failure
+{
+    NSString *endpoint = [NSString stringWithFormat:TagsMediaEndpoint,tag];
+    NSString *perecentEscapedEndPoint = [endpoint stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *parameters = [self
+        prepareParameters:
+        @{
+            CountKey:@(FeedCount)
+        }
+    ];
+    
+    [_requestOperationManager
+        GET:perecentEscapedEndPoint
+        parameters:parameters
+        success:^(AFHTTPRequestOperation *operation, id response)
+        {
+            success(response[DataKey], response[PaginationKey]);
+        }
+        failure:^(AFHTTPRequestOperation *operation, NSError *error)
+        {
+            failure(error);
+        }
+    ];
+}
+
+
+/******************************************************************************/
+
+#pragma mark - Utility Methods
+
+/******************************************************************************/
+
 - (NSDictionary *)prepareParameters:(NSDictionary *)parameters
 {
     NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
@@ -303,44 +418,5 @@ static NSInteger const FeedCount = 20;
     
     return [NSDictionary dictionaryWithDictionary:mutableParameters];
 }
-
-//
-//- (void)getSelfUserFeedWithSuccess:(InstagramMediaBlock)success
-//    failure:(InstagramFailureBlock)failure
-//{
-//    [self getPath:[NSString stringWithFormat:@"users/self/feed"] parameters:nil responseModel:[InstagramMedia class] success:^(id response, InstagramPaginationInfo *paginationInfo) {
-//        if(success)
-//		{
-//			NSArray *objects = response;
-//			success(objects, paginationInfo);
-//		}
-//    } failure:^(NSError *error, NSInteger statusCode) {
-//        if(failure)
-//		{
-//			failure(error);
-//		}
-//    }];
-//}
-//
-//
-//- (void)getSelfUserFeedWithCount:(NSInteger)count
-//    maxId:(NSString *)maxId
-//    success:(InstagramMediaBlock)success
-//    failure:(InstagramFailureBlock)failure
-//{
-//    NSDictionary *params = [self parametersFromCount:count maxId:maxId andMaxIdType:kPaginationMaxId];
-//    [self getPath:[NSString stringWithFormat:@"users/self/feed"] parameters:params responseModel:[InstagramMedia class] success:^(id response, InstagramPaginationInfo *paginationInfo) {
-//        if(success)
-//		{
-//			NSArray *objects = response;
-//			success(objects, paginationInfo);
-//		}
-//    } failure:^(NSError *error, NSInteger statusCode) {
-//        if(failure)
-//		{
-//			failure(error);
-//		}
-//    }];
-//}
 
 @end

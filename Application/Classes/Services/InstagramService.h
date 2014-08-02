@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#import "InstagramService.h"
+#import "InstagramPagination.h"
+
 typedef void (^InstagramServiceErrorBlock)                      (NSError *error);
 typedef void (^InstagramServiceDataResponseBlock)               (id dataResponse);
 typedef void (^InstagramServiceDataAndPaginationResponseBlock)  (id dataResponse, id paginationResponse);
@@ -37,15 +40,20 @@ typedef void (^InstagramServiceDataAndPaginationResponseBlock)  (id dataResponse
 - (void)getSelfUserFeedWithSuccess:(InstagramServiceDataAndPaginationResponseBlock)success
     failure:(InstagramServiceErrorBlock)failure;
 
-//WithSuccess:
-//    (void (^)(InstagramUser *userDetail))success
-//    failure:(InstagramFailureBlock)failure
+- (void)getLatestSelfUserFeedWithMinID:(NSString *)minID
+    success:(InstagramServiceDataResponseBlock)success
+    failure:(InstagramServiceErrorBlock)failure;
 
-//- (void)getSelfUserFeedWithSuccess:(InstagramMediaBlock)success
-//    failure:(InstagramFailureBlock)failure;
-//
-//- (void)getSelfUserFeedWithCount:(NSInteger)count maxId:(NSString *)maxId
-//    success:(InstagramMediaBlock)success
-//    failure:(InstagramFailureBlock)failure;
+- (void)getNextPageForFeed:(id<Paging>)pagingFeed
+    success:(InstagramServiceDataAndPaginationResponseBlock)success
+    failure:(InstagramServiceErrorBlock)failure;
+
+- (void)getTagsForQuery:(NSString *)query
+    success:(InstagramServiceDataResponseBlock)success
+    failure:(InstagramServiceErrorBlock)failure;
+
+- (void)getMediaFeedForTag:(NSString *)tag
+    success:(InstagramServiceDataAndPaginationResponseBlock)success
+    failure:(InstagramServiceErrorBlock)failure;
 
 @end

@@ -12,6 +12,7 @@
 @class InstagramUser;
 @class InstagramPagination;
 @class InstagramMedia;
+@class InstagramTag;
 
 extern NSString *const IDKey;
 extern NSString *const UsernameKey;
@@ -81,5 +82,8 @@ typedef InstagramComment*   (^InstagramObjectMapperCommentEntityRequestHandler) 
     toComment:(InstagramComment *)comment
     asCaption:(BOOL)asCaption
     withUserEntityRequestHandler:(InstagramObjectMapperUserEntityRequestHandler)userEntityRequestHandler;
-    
+
++ (void)mapResponse:(NSDictionary *)response
+    toTag:(InstagramTag *)tag;
+
 @end

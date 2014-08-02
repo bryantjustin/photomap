@@ -12,6 +12,7 @@
 #import "InstagramUser.h"
 #import "InstagramMedia.h"
 #import "InstagramComment.h"
+#import "InstagramTag.h"
 
 NSString *const IDKey                   = @"id";
 NSString *const UsernameKey             = @"username";
@@ -51,6 +52,9 @@ NSString *const WidthKey                = @"width";
 NSString *const TypeKey                 = @"type";
 NSString *const ImageString             = @"image";
 NSString *const VideoString             = @"video";
+
+NSString *const NameKey                 = @"name";
+NSString *const MediaCountKey           = @"media_count";
 
 static NSString *const NullString = @"<null>";
 
@@ -236,4 +240,13 @@ static NSString *const NullString = @"<null>";
     }
 }
 
++ (void)mapResponse:(NSDictionary *)response
+    toTag:(InstagramTag *)tag
+{
+    if ([self isValueNonNull:response])
+    {
+        tag.name = [NSString stringWithString:response[NameKey]];
+        tag.mediaCount = [NSString stringWithString:response[MediaCountKey]].integerValue;
+    }
+}
 @end

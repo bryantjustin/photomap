@@ -44,10 +44,6 @@
 - (void)prepareMap
 {
     self.mapView.delegate = self;
-    
-    [self.mapView setShowsUserLocation:YES];
-    [self.mapView setShowsBuildings:YES];
-    [self.mapView setShowsPointsOfInterest:YES];
 }
 
 - (void)mapPhotos:(NSArray *)mediaArray
@@ -89,27 +85,6 @@
 /******************************************************************************/
 #pragma mark -
 #pragma mark MKMapViewDelegate
-/******************************************************************************/
-
-- (void)mapView:(MKMapView *)lmapView didUpdateUserLocation:(MKUserLocation *)userLocation
-{
-    if (!_didZoomInToUser)
-    {
-        MKCoordinateRegion region;
-        region.center = self.mapView.userLocation.coordinate;
-        region.span = MKCoordinateSpanMake(INTIAL_REGION_SPAN, INTIAL_REGION_SPAN);
-        region = [self.mapView regionThatFits:region];
-        [self.mapView setRegion:region animated:YES];
-        
-        _didZoomInToUser = YES;
-    }
-}
-
-
-
-/******************************************************************************/
-#pragma mark -
-#pragma mark MKMapViewDelegated
 /******************************************************************************/
 
 - (MKAnnotationView *)mapView:(MKMapView *)lmapView viewForAnnotation:(id <MKAnnotation>)annotation;

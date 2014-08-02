@@ -9,10 +9,12 @@
 #import <AFNetworking/AFNetworking.h>
 #import "InstagramManager.h"
 
+#import "InstagramMedia.h"
 #import "InstagramPagination.h"
 #import "InstagramObjectMapper.h"
 #import "InstagramService.h"
 #import "InstagramStoreCoordinator.h"
+#import "InstagramTag.h"
 #import "MediaFeed.h"
 
 @interface InstagramManager ()
@@ -209,7 +211,7 @@
                 ];
                 
                 [_storeCoordinator
-                    cacheSelfUserFeedResponse:dataResponse
+                    cacheMediaArrayResponse:dataResponse
                     withCompletion:^(NSArray *media, NSError *error)
                     {
                         if (error == nil)
@@ -230,6 +232,120 @@
                 failure(error);
             }
         ];
+    }
+}
+
+- (void)getLatestForMediaFeed:(MediaFeed *)feed
+    success:(InstagramManagerMediaFeedBlock)success
+    failure:(InstagramManagerErrorBlock)failure;
+{
+    if (AFNetworkReachabilityManager.sharedManager.isReachable)
+    {
+        InstagramMedia *media = feed.media.firstObject;
+        [_service
+            getLatestSelfUserFeedWithMinID:media.id
+            success:^(id dataResponse)
+            {
+                [_storeCoordinator
+                    cacheMediaArrayResponse:dataResponse
+                    withCompletion:^(NSArray *media, NSError *error)
+                    {
+                        if (error == nil)
+                        {
+                            [feed updateWithLatestObjects:media];
+                            success(feed);
+                        }
+                        else
+                        {
+                            failure(error);
+                        }
+                    }
+                ];
+            }
+            failure:^(NSError *error)
+            {
+                failure(error);
+            }
+        ];
+    }
+}
+
+- (void)getNextPageForFeed:(id<Paging>)pagingFeed
+    success:(InstagramManagerMediaFeedBlock)success
+    failure:(InstagramManagerErrorBlock)failure
+{
+    if (AFNetworkReachabilityManager.sharedManager.isReachable)
+    {
+        [_service
+            getNextPageForFeed:pagingFeed
+            success:^(id dataResponse, id paginationResponse)
+            {
+                InstagramPagination *pagination = [InstagramPagination new];
+                [InstagramObjectMapper
+                    mapResponse:paginationResponse
+                    toPagination:pagination
+                ];
+                
+                [_storeCoordinator
+                    cacheMediaArrayResponse:dataResponse
+                    withCompletion:^(NSArray *media, NSError *error)
+                    {
+                        if (error == nil)
+                        {
+                            [pagingFeed
+                                updateWithNextPageOfObjects:media
+                                andPagination:pagination
+                            ];
+                            success(pagingFeed);
+                        }
+                        else
+                        {
+                            failure(error);
+                        }
+                    }
+                ];
+            }
+            failure:^(NSError *error)
+            {
+                failure(error);
+            }
+        ];
+    }
+}
+
+- (void)getTagsForQuery:(NSString *)query
+    success:(InstagramManagerTagsBlock)success failure:(InstagramManagerErrorBlock)failure
+{
+    if (AFNetworkReachabilityManager.sharedManager.isReachable)
+    {
+        [_service
+            getTagsForQuery:query
+            success:^(id dataResponse)
+            {
+                NSArray *dataResponseAsArray = dataResponse;
+                NSMutableArray *mutableTags = [NSMutableArray arrayWithCapacity:dataResponseAsArray.count];
+                
+                for(int i = 0; i <  dataResponseAsArray.count; i++)
+                {
+                    InstagramTag *tag = [InstagramTag new];
+                    [InstagramObjectMapper
+                        mapResponse:dataResponseAsArray[i]
+                        toTag:tag
+                    ];
+                    [mutableTags addObject:tag];
+                }
+                
+                success([NSArray arrayWithArray:mutableTags]);
+            }
+            failure:^(NSError *error)
+            {
+                failure(error);
+            }
+        ];
+    }
+    else
+    {
+        success(nil);
     }
 }
 

@@ -36,13 +36,12 @@
     }
     
     [_media addObjectsFromArray:media];
-    _media = [NSMutableArray arrayWithArray:[self sortMedia]];
-    
+    _media = [NSMutableArray arrayWithArray:[self sortMedia:_media]];
 }
 
-- (NSArray *)sortMedia
+- (NSArray *)sortMedia:(NSArray *)media
 {
-    return [_media
+    return [media
         sortedArrayUsingDescriptors:
         @[
             [NSSortDescriptor
@@ -50,6 +49,40 @@
                 ascending:NO
             ]
         ]
+    ];
+}
+
+- (void)updateWithLatestObjects:(NSArray *)objects
+{
+    if (_media == nil)
+    {
+        [self addMedia:objects];
+    }
+    else
+    {
+        NSMutableArray *updatedArray = [NSMutableArray arrayWithArray:objects];
+        [updatedArray addObjectsFromArray:_media];
+        _media = [NSMutableArray arrayWithArray:[self sortMedia:updatedArray]];
+        
+    }
+    
+    [NSNotificationCenter.defaultCenter
+        postNotificationName:kFeedDidUpdate
+        object:self
+        userInfo:@{UpdatedObjectsKey:objects}
+    ];
+}
+
+- (void)updateWithNextPageOfObjects:(NSArray *)objects
+    andPagination:(InstagramPagination *)pagination
+{
+    [self setPagination:pagination];
+    [self addMedia:objects];
+    
+    [NSNotificationCenter.defaultCenter
+        postNotificationName:kFeedDidUpdate
+        object:self
+        userInfo:@{UpdatedObjectsKey:objects}
     ];
 }
 

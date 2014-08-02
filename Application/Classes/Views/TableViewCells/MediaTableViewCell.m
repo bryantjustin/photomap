@@ -35,7 +35,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self.activityIndicatorView startAnimating];
+    
 }
 
 - (void)setMedia:(InstagramMedia *)media
@@ -56,6 +56,7 @@
                 break;
         }
         
+        [self.activityIndicatorView startAnimating];
         self.activityIndicatorView.hidden = NO;
         
         [MediaManager.sharedManager
@@ -64,6 +65,7 @@
             {
                 self.photoImageView.image           = image;
                 self.activityIndicatorView.hidden   = YES;
+                [self.activityIndicatorView stopAnimating];
                 [self setNeedsLayout];
             }
         ];
@@ -71,6 +73,7 @@
     else
     {
         self.activityIndicatorView.hidden = YES;
+        [self.activityIndicatorView stopAnimating];
         self.photoImageView.image = nil;
     }
     

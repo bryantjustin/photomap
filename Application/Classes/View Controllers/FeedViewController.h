@@ -12,6 +12,7 @@
 
 @interface FeedViewController : UIViewController
 <
+    UIScrollViewDelegate,
     UITableViewDataSource,
     UITableViewDelegate
 >

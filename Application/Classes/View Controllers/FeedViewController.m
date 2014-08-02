@@ -11,6 +11,7 @@
 #import "MediaDetailViewController.h"
 #import "FeedHeaderView.h"
 #import "InstagramMedia.h"
+#import "InstagramManager.h"
 #import "MediaFeed.h"
 #import "MediaTableViewCell.h"
 
@@ -39,7 +40,9 @@ static NSString *const MediaCellViewIdentifier          = @"MediaCellViewIdentif
 @end
 
 @implementation FeedViewController
-
+{
+    BOOL _didRequestToUpdateFeed;
+}
 
 
 /******************************************************************************/
@@ -52,7 +55,30 @@ static NSString *const MediaCellViewIdentifier          = @"MediaCellViewIdentif
 
 - (void)setFeed:(MediaFeed *)feed
 {
+    if (_feed)
+    {
+        [NSNotificationCenter.defaultCenter
+            removeObserver:self
+            name:kFeedDidUpdate
+            object:_feed
+        ];
+    }
+    
     _feed = feed;
+    
+    if (_feed)
+    {
+        [NSNotificationCenter.defaultCenter
+            addObserverForName:kFeedDidUpdate
+            object:_feed
+            queue:NSOperationQueue.mainQueue
+            usingBlock:^(NSNotification *notification)
+            {
+                [self.tableView reloadData];
+            }
+        ];
+         
+    }
     [self.tableView reloadData];
 }
 
@@ -80,6 +106,7 @@ static NSString *const MediaCellViewIdentifier          = @"MediaCellViewIdentif
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -190,6 +217,30 @@ static NSString *const MediaCellViewIdentifier          = @"MediaCellViewIdentif
 }
 
 - (void)tableView:(UITableView *)tableView
+    willDisplayCell:(UITableViewCell *)cell
+    forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section >= self.feed.media.count -1)
+    {
+        if (!_didRequestToUpdateFeed)
+        {
+            _didRequestToUpdateFeed = YES;
+            [InstagramManager.sharedManager
+                getNextPageForFeed:_feed
+                success:^(MediaFeed *feed)
+                {
+                    _didRequestToUpdateFeed = NO;
+                }
+                failure:^(NSError *error)
+                {
+                    _didRequestToUpdateFeed = NO;
+                }
+            ];
+        }
+    }
+}
+
+- (void)tableView:(UITableView *)tableView
     didEndDisplayingCell:(UITableViewCell *)cell
     forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -243,8 +294,6 @@ static NSString *const MediaCellViewIdentifier          = @"MediaCellViewIdentif
     }
 }
 
-
-
 /******************************************************************************/
 
 #pragma mark - Data Utilities
@@ -260,5 +309,7 @@ static NSString *const MediaCellViewIdentifier          = @"MediaCellViewIdentif
 {
     return self.feed.media[section];
 }
+
+
 
 @end

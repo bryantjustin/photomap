@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "InstagramPagination.h"
 
 @class InstagramUser;
 @class InstagramMedia;
 @class InstagramComment;
-@class InstagramPagination;
+@class InstagramTag;
 
 @class MediaFeed;
 
@@ -19,6 +20,7 @@ typedef void (^InstagramManagerErrorBlock)      (NSError *error);
 typedef void (^InstagramManagerUserBlock)       (InstagramUser *user);
 typedef void (^InstagramManagerMediaFeedBlock)  (MediaFeed *feed);
 typedef void (^InstagramManagerCommentBlock)    (NSArray *comments);
+typedef void (^InstagramManagerTagsBlock)       (NSArray *tags);
 
 @interface InstagramManager : NSObject
 
@@ -39,6 +41,22 @@ typedef void (^InstagramManagerCommentBlock)    (NSArray *comments);
     failure:(InstagramManagerErrorBlock)error;
 
 - (void)getSelfUserFeedWithSuccess:(InstagramManagerMediaFeedBlock)success
+    failure:(InstagramManagerErrorBlock)failure;
+
+- (void)getLatestForMediaFeed:(MediaFeed *)feed
+    success:(InstagramManagerMediaFeedBlock)success
+    failure:(InstagramManagerErrorBlock)failure;
+
+- (void)getNextPageForFeed:(id<Paging>)pagingFeed
+    success:(InstagramManagerMediaFeedBlock)success
+    failure:(InstagramManagerErrorBlock)failure;
+
+- (void)getTagsForQuery:(NSString *)query
+    success:(InstagramManagerTagsBlock)success
+    failure:(InstagramManagerErrorBlock)failure;
+
+- (void)getMediaFeedForTag:(InstagramTag *)tag
+    success:(InstagramManagerMediaFeedBlock)success
     failure:(InstagramManagerErrorBlock)failure;
 
 @end

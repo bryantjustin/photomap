@@ -290,15 +290,6 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
 
 /******************************************************************************/
 
-- (void)cacheSelfUserFeedResponse:(NSArray *)response
-    withCompletion:(InstagramStoreCoordinatorMediaAndErrorBlock)completion
-{
-    [self
-        cacheMediaFeedResponse:response
-        withCompletion:completion
-    ];
-}
-
 - (void)getSelfUserFeedWithCompletion:(InstagramStoreCoordinatorMediaAndErrorBlock)completion
 {
     NSManagedObjectContext *workerQueueContext = [CoreDataStoreCoordinator.sharedStoreCoordinator spawnWorkerContext];
@@ -355,13 +346,15 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
     ];
 }
 
+
+
 /******************************************************************************/
 
 #pragma mark - General Media Feed Caching Methods
 
 /******************************************************************************/
 
-- (void)cacheMediaFeedResponse:(NSArray *)response
+- (void)cacheMediaArrayResponse:(NSArray *)response
     withCompletion:(InstagramStoreCoordinatorMediaAndErrorBlock)completion
 {
     NSManagedObjectContext *mainQueueContext = CoreDataStoreCoordinator.sharedStoreCoordinator.mainManagedObjectContext;
