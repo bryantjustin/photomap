@@ -108,7 +108,7 @@ static NSString *const NullString = @"<null>";
     if ([self isValueNonNull:response])
     {
         pagination.nextURL = [NSURL URLWithString:response[NextURLKey]];
-        if ([self isValueNonNull:NextMaxIDKey])
+        if ([self isValueNonNull:response[NextMaxIDKey]])
         {
             pagination.nextMaxId = [NSString stringWithString:response[NextMaxIDKey]];
         }
@@ -139,10 +139,13 @@ static NSString *const NullString = @"<null>";
         }
         
         NSDictionary *locationResponse = response[LocationKey];
-        if ([self isValueNonNull:locationResponse])
+        BOOL hasValidLocation = [self isValueNonNull:locationResponse];
+        media.hasValidLocation = @(hasValidLocation);
+        if (hasValidLocation)
         {
             media.latitude      = locationResponse[LatitudeKey];
             media.longtitude    = locationResponse[LongitudeKey];
+            
         }
         
         // Parse images response
@@ -246,7 +249,7 @@ static NSString *const NullString = @"<null>";
     if ([self isValueNonNull:response])
     {
         tag.name = [NSString stringWithString:response[NameKey]];
-        tag.mediaCount = [NSString stringWithString:response[MediaCountKey]].integerValue;
+        tag.mediaCount = ((NSNumber *)response[MediaCountKey]).integerValue;
     }
 }
 @end

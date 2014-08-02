@@ -28,22 +28,19 @@
     _user = user;
     
     [self setTitle:user.username.uppercaseString];
+    
+    [self updateBio];
     [self updateProfilePicture];
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self)
-    {
-    }
-    return self;
+    [self updateTabBarTitle];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self updateBio];
     [self updateProfilePicture];
+    [self updateTabBarTitle];
 }
 
 - (void)updateProfilePicture
@@ -66,4 +63,13 @@
     }
 }
 
+- (void)updateBio
+{
+    [self.bioLabel setText:self.user.bio];
+}
+
+- (void)updateTabBarTitle
+{
+    self.tabBarController.tabBarItem.title = @"";
+}
 @end

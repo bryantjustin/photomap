@@ -257,6 +257,20 @@ static NSString *const ProfileIcon  = @"profile-icon";
                     break;
             }
             
+            [tabBarItem
+                setTitleTextAttributes:
+                @{
+                    NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]
+                }
+                forState:UIControlStateNormal
+            ];
+            [tabBarItem
+                setTitleTextAttributes:
+                @{
+                    NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]
+                }
+                forState:UIControlStateSelected
+            ];
         }
         
         _tabBarController.tabBar.selectedImageTintColor = UIColor.whiteColor;
@@ -282,16 +296,18 @@ static NSString *const ProfileIcon  = @"profile-icon";
     UINavigationController *navigationController = [[UINavigationController alloc]
         initWithRootViewController:controller
     ];
+    navigationController.navigationItem.hidesBackButton     = YES;
     navigationController.navigationBar.barTintColor         = barTintColor;
     navigationController.navigationBar.tintColor            = tintColor;
     navigationController.navigationBar.titleTextAttributes  =
     @{
         NSFontAttributeName             :   [UIFont
-                                                fontWithName:AvenirNextDemiBoldFont
+                                                fontWithName:AvenirNextBoldFont
                                                 size:NavigationBarTitleFontSize
                                             ],
         NSForegroundColorAttributeName  :   tintColor
     };
+
     return navigationController;
 }
 

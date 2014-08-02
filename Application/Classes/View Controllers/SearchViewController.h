@@ -6,8 +6,12 @@
 //  Copyright (c) 2014 bryantjustin.com. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ViewController.h"
 
-@interface SearchViewController : UIViewController
-
+@interface SearchViewController : ViewController
+<
+    UITableViewDataSource,
+    UITableViewDelegate,
+    UITextFieldDelegate
+>
 @end

@@ -39,6 +39,9 @@ NS_ENUM(NSInteger, InstagramMediaType)
 @property (nonatomic, retain) InstagramUser *user;
 @property (nonatomic, retain) InstagramComment *caption;
 @property (nonatomic, retain) NSSet *comments;
+@property (nonatomic, retain) NSNumber *hasValidLocation;
+@property (nonatomic, retain) NSNumber *fromSelfFeed;
+
 
 @property (nonatomic, readonly) NSURL *thumbnailURL;
 @property (nonatomic, readonly) NSURL *lowResolutionImageURL;

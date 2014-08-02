@@ -58,6 +58,7 @@ static CGRect  const AnnotationFrame = { 0.0, 0.0, Radius * 2, Radius * 2 };
 - (void)setImage:(UIImage *)image
 {
     self.imageView.image = image;
+    [self setNeedsLayout];
 }
 
 - (MapAnnotation*)mapAnnotation
@@ -69,42 +70,21 @@ static CGRect  const AnnotationFrame = { 0.0, 0.0, Radius * 2, Radius * 2 };
 {
     mapAnnotation = _mapAnnotation;
     
-    self.image = mapAnnotation.image;
-    self.centerOffset = CGPointMake(-Radius/2, -Radius/2);
+    [self setImage:mapAnnotation.image];
+    [self setCenterOffset:CGPointMake(-Radius/2, -Radius/2)];
+    [self setFrame:AnnotationFrame];
 }
 
 
-- (id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithAnnotation:(id<MKAnnotation>)annotation
+    reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier])
     {
         [self setMapAnnotation:annotation];
-        [self setFrame:AnnotationFrame];
     }
     
     return self;
-}
-
-- (void)addOrangeBeacon
-{
-//        center = [UIView new];
-//        center.width = center.height = 15.;
-//        center.layer.cornerRadius = 7.5;
-//
-//        self.backgroundColor = [UIColor whiteColor];
-//        self.width = self.height = 22.;
-//        self.layer.cornerRadius = 11.;
-//        self.layer.shadowOpacity = 0.2;
-//        self.layer.shadowRadius = 5.;
-//        self.layer.shadowColor = UIColor.blackColor.CGColor;
-//        self.layer.shadowOffset = CGSizeMake(
-//            0.,
-//            0.
-//        );
-//
-//        center.center = self.center;
-//        
-//        [self addSubview:center];
 }
 
 @end

@@ -10,6 +10,7 @@
 
 #import "MediaDetailViewController.h"
 #import "FeedHeaderView.h"
+#import "InstagramComment.h"
 #import "InstagramMedia.h"
 #import "InstagramManager.h"
 #import "MediaFeed.h"
@@ -18,19 +19,24 @@
 NS_ENUM(NSInteger, RowType)
 {
     RowTypeMedia,
-    RowTypeComments
+    RowTypeCaption,
+    RowTypeComments,
+    RowTypeSpacer
 };
 
-static NSInteger const RowsPerSection = 2;
+static NSInteger const RowsPerSection = 4;
 
 static CGFloat const SectionHeight      = 50;
 static CGFloat const RowMediaHeight     = 320.0;
-static CGFloat const RowCommentHeight   = 100;
+static CGFloat const RowCaptionHeight   = 75;
+static CGFloat const RowCommentHeight   = 30;
+static CGFloat const RowSpacerHeight    = 75;
 static CGFloat const CommentRowFontSize = 12.;
 
+static NSString *const CaptionCellViewIdentifier        = @"CaptionCellViewIdentifier";
 static NSString *const CommentButtonCellViewIdentifier  = @"CommentButtonCellViewIdentifier";
 static NSString *const MediaCellViewIdentifier          = @"MediaCellViewIdentifier";
-
+static NSString *const SpacerCellViewIdentifier         = @"SpacerCellViewIdentifier";
 
 
 @interface FeedViewController ()
@@ -135,9 +141,20 @@ static NSString *const MediaCellViewIdentifier          = @"MediaCellViewIdentif
         case RowTypeMedia:
             viewCell = [self mediaTableViewCellForMedia:media];
             break;
-
+        
+        case RowTypeCaption:
+            viewCell = [self captionTableViewCellForMedia:media];
+            break;
+            
         case RowTypeComments:
             viewCell = [self commentTableViewCellForMedia:media];
+            break;
+            
+        case RowTypeSpacer:
+            viewCell = [[UITableViewCell alloc]
+                initWithStyle:UITableViewCellStyleDefault
+                reuseIdentifier:SpacerCellViewIdentifier
+            ];
             break;
     }
     
@@ -200,6 +217,27 @@ static NSString *const MediaCellViewIdentifier          = @"MediaCellViewIdentif
     
     return viewCell;
 }
+
+- (UITableViewCell *)captionTableViewCellForMedia:(InstagramMedia *)media
+{
+    UITableViewCell *viewCell = [self.tableView dequeueReusableCellWithIdentifier:CaptionCellViewIdentifier];
+    if (viewCell == nil)
+    {
+        viewCell = [[UITableViewCell alloc]
+            initWithStyle:UITableViewCellStyleDefault
+            reuseIdentifier:CaptionCellViewIdentifier
+        ];
+        viewCell.textLabel.font = [UIFont
+            fontWithName:AvenirRomanFont
+            size:CommentRowFontSize
+        ];
+        viewCell.textLabel.textColor = DarkGreyColor;
+    }
+    viewCell.textLabel.numberOfLines    = 3;
+    viewCell.textLabel.text             = media.caption.text;
+    return viewCell;
+}
+
 
 
 
@@ -266,9 +304,17 @@ static NSString *const MediaCellViewIdentifier          = @"MediaCellViewIdentif
         case RowTypeMedia:
             heightForRow = RowMediaHeight;
             break;
-
-        default:
+        
+        case RowTypeCaption:
+            heightForRow = RowCaptionHeight;
+            break;
+            
+        case RowTypeComments:
             heightForRow = RowCommentHeight;
+            break;
+            
+        case RowTypeSpacer:
+            heightForRow = RowSpacerHeight;
             break;
     }
 

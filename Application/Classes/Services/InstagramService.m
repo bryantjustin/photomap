@@ -40,7 +40,7 @@ static NSString *const MaxIDKey                 = @"max_id";
 static NSString *const MinIDKey                 = @"min_id";
 static NSString *const QKey                     = @"q";
 
-static NSInteger const FeedCount = 25;
+static NSInteger const FeedCount = 24;
 
 
 @interface InstagramService ()

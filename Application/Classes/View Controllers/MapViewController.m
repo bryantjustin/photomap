@@ -28,17 +28,51 @@
     NSMutableDictionary *_annotationsByMediaID;
 }
 
+- (id)initWithNibName:(NSString *)nibNameOrNil
+    bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.title = @"PHOTOMAP";
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setTitle:@"PHOTOMAP"];
     [self prepareMap];
 }
 
 @synthesize feed = _feed;
 - (void)setFeed:(MediaFeed *)feed
 {
+    if (_feed)
+    {
+        [NSNotificationCenter.defaultCenter
+            removeObserver:self
+            name:kFeedDidUpdate
+            object:_feed
+        ];
+    }
+    
     _feed = feed;
+    
+    if (_feed)
+    {
+        [NSNotificationCenter.defaultCenter
+            addObserverForName:kFeedDidUpdate
+            object:_feed
+            queue:NSOperationQueue.mainQueue
+            usingBlock:^(NSNotification *notification)
+            {
+                NSArray *media = notification.userInfo[UpdatedObjectsKey];
+                [self mapPhotos:media];
+            }
+        ];
+         
+    }
+    
     [self mapPhotos:_feed.media];
 }
 - (void)prepareMap
@@ -52,7 +86,7 @@
     {
         InstagramMedia *media = mediaArray[i];
         
-        BOOL shouldAnnotate = CLLocationCoordinate2DIsValid(media.location) && media.thumbnailURL;
+        BOOL shouldAnnotate = media.hasValidLocation.boolValue && media.thumbnailURL;
         if (shouldAnnotate)
         {
             [MediaManager.sharedManager
@@ -94,17 +128,10 @@
     {
         static NSString *viewId = @"com.bryantjustin.photomap.annotation";
         annotationView = (MapAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:viewId];
-        if ( annotationView == nil )
-        {
-            annotationView = [[MapAnnotationView alloc]
-                initWithAnnotation:annotation
-                reuseIdentifier:viewId
-            ];
-        }
-        else
-        {
-            annotationView.annotation = annotation;
-        }
+        annotationView = [[MapAnnotationView alloc]
+            initWithAnnotation:annotation
+            reuseIdentifier:viewId
+        ];
 
         annotationView.enabled = YES;
     }

@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 bryantjustin.com. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ViewController.h"
 
 @class InstagramUser;
 
-@interface ProfileViewController : UIViewController
+@interface ProfileViewController : ViewController
 
 @property (nonatomic,strong) InstagramUser *user;
 

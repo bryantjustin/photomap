@@ -13,6 +13,7 @@
 @protocol Paging <NSObject>
 
 @property (nonatomic,strong) InstagramPagination *pagination;
+@property (nonatomic,assign) BOOL isSelfFeed;
 
 - (void)updateWithNextPageOfObjects:(NSArray *)objects
     andPagination:(InstagramPagination *)pagination;

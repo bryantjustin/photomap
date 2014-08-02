@@ -1,17 +1,17 @@
 //
-//  ImageTableCellView.m
+//  MediaCollectionViewCell.m
 //  PhotoMap
 //
 //  Created by Bryant Balatbat on 2014-07-30.
 //  Copyright (c) 2014 bryantjustin.com. All rights reserved.
 //
 
-#import "MediaTableViewCell.h"
+#import "MediaCollectionViewCell.h"
 
 #import "InstagramMedia.h"
 #import "MediaManager.h"
 
-@interface MediaTableViewCell ()
+@interface MediaCollectionViewCell ()
 
 
 
@@ -28,7 +28,7 @@
 
 
 
-@implementation MediaTableViewCell
+@implementation MediaCollectionViewCell
 
 @synthesize media = _media;
 
@@ -43,10 +43,10 @@
         switch (_media.type.integerValue)
         {
             case InstagramMediaTypeImage:
-                url = _media.standardResolutionImageURL;
+                url = _media.thumbnailURL;
                 break;
             case InstagramMediaTypeVideo:
-                url = _media.standardResolutionVideoURL;
+                url = _media.thumbnailURL;
                 break;
         }
         
@@ -70,8 +70,12 @@
         [self.activityIndicatorView stopAnimating];
         self.photoImageView.image = nil;
     }
-    
-   
+}
+
+- (void)prepareForReuse
+{
+    self.photoImageView.image = nil;
+    [self setNeedsLayout];
 }
 
 @end

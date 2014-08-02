@@ -17,6 +17,7 @@
 + (instancetype)feedWithMedia:(NSArray *)array;
 
 @property (nonatomic,readonly,copy) NSArray *media;
+@property (nonatomic,assign) BOOL isSelfFeed;
 @property (nonatomic,strong) InstagramPagination *pagination;
 
 - (void)addMedia:(NSArray *)media;

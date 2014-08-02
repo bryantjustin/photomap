@@ -7,11 +7,12 @@
 //
 
 #import <MapKit/MapKit.h>
-#import <UIKit/UIKit.h>
+
+#import "ViewController.h"
 
 @class MediaFeed;
 
-@interface MapViewController : UIViewController
+@interface MapViewController : ViewController
 <
     MKMapViewDelegate
 >

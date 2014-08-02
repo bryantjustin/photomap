@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 bryantjustin.com. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ViewController.h"
 
 @class MediaFeed;
 
-@interface FeedViewController : UIViewController
+@interface FeedViewController : ViewController
 <
     UIScrollViewDelegate,
     UITableViewDataSource,

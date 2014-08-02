@@ -212,12 +212,14 @@
                 
                 [_storeCoordinator
                     cacheMediaArrayResponse:dataResponse
+                    fromSelfFeed:YES
                     withCompletion:^(NSArray *media, NSError *error)
                     {
                         if (error == nil)
                         {
                             MediaFeed *feed = [MediaFeed feedWithMedia:media];
                             feed.pagination = pagination;
+                            feed.isSelfFeed = YES;
                             success(feed);
                         }
                         else
@@ -248,6 +250,7 @@
             {
                 [_storeCoordinator
                     cacheMediaArrayResponse:dataResponse
+                    fromSelfFeed:YES
                     withCompletion:^(NSArray *media, NSError *error)
                     {
                         if (error == nil)
@@ -288,6 +291,7 @@
                 
                 [_storeCoordinator
                     cacheMediaArrayResponse:dataResponse
+                    fromSelfFeed:pagingFeed.isSelfFeed
                     withCompletion:^(NSArray *media, NSError *error)
                     {
                         if (error == nil)
@@ -336,6 +340,53 @@
                 }
                 
                 success([NSArray arrayWithArray:mutableTags]);
+            }
+            failure:^(NSError *error)
+            {
+                failure(error);
+            }
+        ];
+    }
+    else
+    {
+        success(nil);
+    }
+}
+
+- (void)getMediaFeedForTag:(InstagramTag *)tag
+    success:(InstagramManagerMediaFeedBlock)success
+    failure:(InstagramManagerErrorBlock)failure
+{
+    if (AFNetworkReachabilityManager.sharedManager.isReachable)
+    {
+        [_service
+            getMediaFeedForTag:tag.name
+            success:^(id dataResponse, id paginationResponse)
+            {
+                InstagramPagination *pagination = [InstagramPagination new];
+                [InstagramObjectMapper
+                    mapResponse:paginationResponse
+                    toPagination:pagination
+                ];
+                
+                [_storeCoordinator
+                    cacheMediaArrayResponse:dataResponse
+                    fromSelfFeed:YES
+                    withCompletion:^(NSArray *media, NSError *error)
+                    {
+                        if (error == nil)
+                        {
+                            MediaFeed *feed = [MediaFeed feedWithMedia:media];
+                            feed.pagination = pagination;
+                            feed.isSelfFeed = NO;
+                            success(feed);
+                        }
+                        else
+                        {
+                            failure(error);
+                        }
+                    }
+                ];
             }
             failure:^(NSError *error)
             {

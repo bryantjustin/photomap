@@ -70,30 +70,48 @@
 - (void)loadImageWithURL:(NSURL *)url
     andCompletionBlock:(MediaManagerImageCompletionBlock)completion
 {
-    NSString *filename = [self filenameForURL:url];
-    UIImage *cachedImage = [_storeCoordinator imageForFilename:filename];
-    if (cachedImage)
-    {
-        completion(cachedImage);
-    }
-    else
-    {
-        [_downloader
-            downloadImageWithURL:url
-            andCompletionBlock:^(UIImage *image)
+    dispatch_async(
+        dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul),
+        ^(void)
+        {
+            NSString *filename = [self filenameForURL:url];
+            UIImage *cachedImage = [_storeCoordinator imageForFilename:filename];
+            if (cachedImage)
             {
-                if (image)
-                {
-                    [_storeCoordinator
-                        cacheImage:[image copy]
-                        withFilename:[self filenameForURL:url]
-                    ];
-                }
-                
-                completion(image);
+                dispatch_async(
+                    dispatch_get_main_queue(),
+                    ^(void)
+                    {
+                        completion(cachedImage);
+                    }
+                );
             }
-        ];
-    }
+            else
+            {
+                [_downloader
+                    downloadImageWithURL:url
+                    andCompletionBlock:^(UIImage *image)
+                    {
+                        if (image)
+                        {
+                            [_storeCoordinator
+                                cacheImage:[image copy]
+                                withFilename:[self filenameForURL:url]
+                            ];
+                        }
+                        
+                        dispatch_async(
+                            dispatch_get_main_queue(),
+                            ^(void)
+                            {
+                                completion(image);
+                            }
+                        );
+                    }
+                ];
+            }
+        }
+    );
 }
 
 - (NSString *)filenameForURL:(NSURL *)url

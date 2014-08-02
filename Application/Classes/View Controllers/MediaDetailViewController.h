@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 bryantjustin.com. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ViewController.h"
 
 @class InstagramMedia;
 
-@interface MediaDetailViewController : UIViewController
+@interface MediaDetailViewController : ViewController
 <
     UITableViewDataSource,
     UITableViewDelegate

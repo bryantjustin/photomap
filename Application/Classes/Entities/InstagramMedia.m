@@ -32,6 +32,8 @@
 @dynamic user;
 @dynamic caption;
 @dynamic comments;
+@dynamic hasValidLocation;
+@dynamic fromSelfFeed;
 
 
 

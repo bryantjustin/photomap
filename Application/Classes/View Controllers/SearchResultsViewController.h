@@ -6,8 +6,18 @@
 //  Copyright (c) 2014 bryantjustin.com. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ViewController.h"
 
-@interface SearchResultsViewController : UIViewController
+@class InstagramTag;
+
+@interface SearchResultsViewController : ViewController
+<
+    UICollectionViewDataSource,
+    UICollectionViewDelegate,
+    UICollectionViewDelegateFlowLayout,
+    UIScrollViewDelegate
+>
+
++ (instancetype)controllerWithTag:(InstagramTag *)tag;
 
 @end

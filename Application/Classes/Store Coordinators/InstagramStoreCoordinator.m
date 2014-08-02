@@ -313,6 +313,7 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
                 ]
             ];
             [fetchRequest setFetchBatchSize:MediaBatchSize];
+            [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"fromSelfFeed == YES"]];
             
             NSError *error = nil;
             NSArray *mediaObjectIDs = [workerQueueContext
@@ -355,6 +356,7 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
 /******************************************************************************/
 
 - (void)cacheMediaArrayResponse:(NSArray *)response
+    fromSelfFeed:(BOOL)fromSelfFeed
     withCompletion:(InstagramStoreCoordinatorMediaAndErrorBlock)completion
 {
     NSManagedObjectContext *mainQueueContext = CoreDataStoreCoordinator.sharedStoreCoordinator.mainManagedObjectContext;
@@ -456,6 +458,11 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
                     withUserEntityRequestHandler:userEntityRequestHandler
                     andCommentEntityRequestHandler:commentEntityHandler
                 ];
+                
+                if (media.fromSelfFeed.boolValue || fromSelfFeed)
+                {
+                    media.fromSelfFeed = @(YES);
+                }
                 
                 if (media.objectID.isTemporaryID)
                 {

@@ -20,8 +20,9 @@ static NSString *const CommentViewCellIdentifier    = @"CommentViewCellIdentifie
 static NSInteger const MediaIndex   = 0;
 static NSInteger const MediaOffset  = 1;
 
-static CGFloat const SectionHeight      = 50;
-static CGFloat const RowMediaHeight     = 320.0;
+static CGFloat const SectionHeaderHeight    = 50;
+static CGFloat const SectionFooterHeight    = 0.01;
+static CGFloat const RowMediaHeight         = 320.0;
 
 @interface MediaDetailViewController ()
 
@@ -56,6 +57,8 @@ static CGFloat const RowMediaHeight     = 320.0;
                 ]
             ]
         ];
+        
+        self.title = _media.type.integerValue == InstagramMediaTypeVideo ? @"VIDEO" : @"PHOTO";
     }
     
     return self;
@@ -147,7 +150,13 @@ static CGFloat const RowMediaHeight     = 320.0;
 - (CGFloat)tableView:(UITableView *)tableView
     heightForHeaderInSection:(NSInteger)section
 {
-    return SectionHeight;
+    return SectionHeaderHeight;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView
+    heightForFooterInSection:(NSInteger)section
+{
+    return SectionFooterHeight;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -155,6 +164,12 @@ static CGFloat const RowMediaHeight     = 320.0;
     FeedHeaderView *headerView = [FeedHeaderView new];
     [headerView setMedia:self.media];
     return headerView;
+}
+
+- (UIView *)tableView:(UITableView *)tableView
+    viewForFooterInSection:(NSInteger)section
+{
+    return [UIView new];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView

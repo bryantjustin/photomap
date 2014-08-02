@@ -61,6 +61,7 @@ typedef void (^InstagramStoreCoordinatorCommentandErrorBlock)   (NSArray *commen
  *  @param completion InstagramStoreCoordinatorMediaAndErrorBlock completion block
  */
 - (void)cacheMediaArrayResponse:(NSArray *)response
+    fromSelfFeed:(BOOL)fromSelfFeed
     withCompletion:(InstagramStoreCoordinatorMediaAndErrorBlock)completion;
 /**
  *  Retrieves the stored InstagramMedia feed associated with the authenticated user.
@@ -68,5 +69,6 @@ typedef void (^InstagramStoreCoordinatorCommentandErrorBlock)   (NSArray *commen
  *  @param completion InstagramStoreCoordinatorMediaAndErrorBlock completion block
  */
 - (void)getSelfUserFeedWithCompletion:(InstagramStoreCoordinatorMediaAndErrorBlock)completion;
+
 
 @end
