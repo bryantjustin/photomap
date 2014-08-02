@@ -10,6 +10,9 @@
 		142589D5198CDB230052EC77 /* MediaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 142589D2198CDB230052EC77 /* MediaCollectionViewCell.m */; };
 		142589D7198CFC4B0052EC77 /* MediaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142589D6198CFC4B0052EC77 /* MediaCollectionViewCell.xib */; };
 		142589DA198D05BF0052EC77 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142589D9198D05BF0052EC77 /* ViewController.m */; };
+		142589DE198D7ACF0052EC77 /* CaptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 142589DC198D7ACF0052EC77 /* CaptionTableViewCell.m */; };
+		142589DF198D7ACF0052EC77 /* CaptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142589DD198D7ACF0052EC77 /* CaptionTableViewCell.xib */; };
+		142589E3198D7CCA0052EC77 /* LabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 142589E2198D7CCA0052EC77 /* LabelUtil.m */; };
 		142C00C41985776B000BFEB8 /* InstagramPagination.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C00C31985776B000BFEB8 /* InstagramPagination.m */; };
 		1451D6861983EA03003380BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1451D6851983EA03003380BC /* Foundation.framework */; };
 		1451D6881983EA03003380BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1451D6871983EA03003380BC /* CoreGraphics.framework */; };
@@ -85,6 +88,11 @@
 		142589D6198CFC4B0052EC77 /* MediaCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MediaCollectionViewCell.xib; path = Views/CollectionViewCells/MediaCollectionViewCell.xib; sourceTree = "<group>"; };
 		142589D8198D05BF0052EC77 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		142589D9198D05BF0052EC77 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		142589DB198D7ACF0052EC77 /* CaptionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptionTableViewCell.h; sourceTree = "<group>"; };
+		142589DC198D7ACF0052EC77 /* CaptionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptionTableViewCell.m; sourceTree = "<group>"; };
+		142589DD198D7ACF0052EC77 /* CaptionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CaptionTableViewCell.xib; sourceTree = "<group>"; };
+		142589E1198D7CCA0052EC77 /* LabelUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LabelUtil.h; path = Utils/LabelUtil.h; sourceTree = "<group>"; };
+		142589E2198D7CCA0052EC77 /* LabelUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LabelUtil.m; path = Utils/LabelUtil.m; sourceTree = "<group>"; };
 		142C00C21985776B000BFEB8 /* InstagramPagination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstagramPagination.h; path = Models/Instagram/InstagramPagination.h; sourceTree = "<group>"; };
 		142C00C31985776B000BFEB8 /* InstagramPagination.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstagramPagination.m; path = Models/Instagram/InstagramPagination.m; sourceTree = "<group>"; };
 		1451D6821983EA03003380BC /* PhotoMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -217,6 +225,15 @@
 			name = CollectionViewCells;
 			sourceTree = "<group>";
 		};
+		142589E0198D7C9D0052EC77 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				142589E1198D7CCA0052EC77 /* LabelUtil.h */,
+				142589E2198D7CCA0052EC77 /* LabelUtil.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		142C00C119857734000BFEB8 /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,6 +331,7 @@
 				14FFD4C71986676E00A57FC6 /* Object Mappers */,
 				1451D6E619840E14003380BC /* Services */,
 				14FFD49B1985B44F00A57FC6 /* Store Coordinators */,
+				142589E0198D7C9D0052EC77 /* Utils */,
 				1451D6C01983EE99003380BC /* View Controllers */,
 				148505961988A52A00C96108 /* Views */,
 			);
@@ -424,6 +442,9 @@
 				148505B21989030F00C96108 /* CommentTableViewCell.h */,
 				148505B31989030F00C96108 /* CommentTableViewCell.m */,
 				148505B51989031E00C96108 /* CommentTableViewCell.xib */,
+				142589DB198D7ACF0052EC77 /* CaptionTableViewCell.h */,
+				142589DC198D7ACF0052EC77 /* CaptionTableViewCell.m */,
+				142589DD198D7ACF0052EC77 /* CaptionTableViewCell.xib */,
 			);
 			name = TableViewCells;
 			path = Views/TableViewCells;
@@ -562,6 +583,7 @@
 				1451D6D11983FCF0003380BC /* FeedViewController.xib in Resources */,
 				1451D6CC1983FBAC003380BC /* RootViewController.xib in Resources */,
 				148505B61989031E00C96108 /* CommentTableViewCell.xib in Resources */,
+				142589DF198D7ACF0052EC77 /* CaptionTableViewCell.xib in Resources */,
 				1489F168198BBCF700CDB3DD /* SearchResultsViewController.xib in Resources */,
 				14F02EB6198A3C94006AB5D0 /* FeedHeaderView.xib in Resources */,
 			);
@@ -643,8 +665,10 @@
 				142C00C41985776B000BFEB8 /* InstagramPagination.m in Sources */,
 				14F02EB9198A5BDB006AB5D0 /* MapAnnotationView.m in Sources */,
 				14FFD4A91985BFAF00A57FC6 /* CoreDataStoreCoordinator.m in Sources */,
+				142589E3198D7CCA0052EC77 /* LabelUtil.m in Sources */,
 				14FFD4CA1986676E00A57FC6 /* InstagramObjectMapper.m in Sources */,
 				148505A11988C6CD00C96108 /* MediaTableViewCell.m in Sources */,
+				142589DE198D7ACF0052EC77 /* CaptionTableViewCell.m in Sources */,
 				14FFD48D1985A1D900A57FC6 /* PhotoMapModel.xcdatamodeld in Sources */,
 				1459A36319887CBC005C6517 /* MediaManager.m in Sources */,
 				14FFD4B51985CE6700A57FC6 /* InstagramMedia.m in Sources */,

@@ -8,21 +8,35 @@
 
 #import "MediaDetailViewController.h"
 
+#import "CaptionTableViewCell.h"
 #import "CommentTableViewCell.h"
 #import "InstagramComment.h"
 #import "InstagramMedia.h"
 #import "FeedHeaderView.h"
+#import "LabelUtil.h"
 #import "MediaTableViewCell.h"
 
-static NSString *const MediaCellViewIdentifier      = @"MediaCellViewIdentifier";
+static NSString *const CaptionViewCellIdentifier    = @"CaptionViewCellIdentifier";
 static NSString *const CommentViewCellIdentifier    = @"CommentViewCellIdentifier";
+static NSString *const MediaCellViewIdentifier      = @"MediaCellViewIdentifier";
 
-static NSInteger const MediaIndex   = 0;
-static NSInteger const MediaOffset  = 1;
+static NSInteger const MediaIndex       = 0;
+static NSInteger const CaptionIndex     = 1;
+static NSInteger const MediaOffset      = 1;
+static NSInteger const CaptionOffset    = 1;
 
 static CGFloat const SectionHeaderHeight    = 50;
 static CGFloat const SectionFooterHeight    = 0.01;
 static CGFloat const RowMediaHeight         = 320.0;
+
+static CGFloat const CommentFontSize        = 13.0;
+static CGFloat const CommentUsernameMaxY    = 41.0;
+static CGFloat const CommentBottomPadding   = 15.0;
+static CGFloat const CommentWidth           = 290.0;
+
+static CGFloat const CaptionFontSize        = 13.0;
+static CGFloat const CaptionPadding         = 15 * 2; // Top and bottom
+static CGFloat const CaptionWidth           = 290.0;
 
 @interface MediaDetailViewController ()
 
@@ -92,7 +106,7 @@ static CGFloat const RowMediaHeight         = 320.0;
 - (NSInteger)tableView:(UITableView *)tableView
     numberOfRowsInSection:(NSInteger)section
 {
-    return self.comments.count + MediaOffset;
+    return self.comments.count + MediaOffset + CaptionOffset;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -102,6 +116,10 @@ static CGFloat const RowMediaHeight         = 320.0;
     if (indexPath.row == MediaIndex)
     {
         viewCell = [self mediaTableViewCell];
+    }
+    else if(indexPath.row == CaptionIndex)
+    {
+        viewCell = [self captionTableViewCell];
     }
     else
     {
@@ -117,9 +135,20 @@ static CGFloat const RowMediaHeight         = 320.0;
     if (mediaViewCell == nil)
     {
         mediaViewCell = [MediaTableViewCell new];
-        [mediaViewCell setMedia:self.media];
     }
+    [mediaViewCell setMedia:self.media];
     return mediaViewCell;
+}
+
+- (CaptionTableViewCell *)captionTableViewCell;
+{
+    CaptionTableViewCell *captionViewCell = (CaptionTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CaptionViewCellIdentifier];
+    if (captionViewCell == nil)
+    {
+        captionViewCell = [CaptionTableViewCell new];
+    }
+    [captionViewCell setCaption:self.media.caption];
+    return captionViewCell;
 }
 
 - (CommentTableViewCell *)commentTableViewCellForIndexPath:(NSIndexPath *)indexPath
@@ -128,7 +157,6 @@ static CGFloat const RowMediaHeight         = 320.0;
     if (commentViewCell == nil)
     {
         commentViewCell = [CommentTableViewCell new];
-        commentViewCell.reuseIdentifier = CommentViewCellIdentifier;
     }
     [commentViewCell setComment:[self commentForIndexPath:indexPath]];
     return commentViewCell;
@@ -136,7 +164,7 @@ static CGFloat const RowMediaHeight         = 320.0;
 
 - (InstagramComment *)commentForIndexPath:(NSIndexPath *)indexPath
 {
-    return self.comments[indexPath.row - MediaOffset];
+    return self.comments[indexPath.row - MediaOffset - CaptionOffset];
 }
 
 
@@ -176,13 +204,34 @@ static CGFloat const RowMediaHeight         = 320.0;
     heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat height = 0.0;
+
     if (indexPath.row == MediaIndex)
     {
         height = RowMediaHeight;
     }
+    else if (indexPath.row == CaptionIndex)
+    {
+        height = self.media.caption.text ? [LabelUtil
+            heightForRowWithString:self.media.caption.text
+            font:[UIFont
+                fontWithName:AvenirNextRegularFont
+                size:CaptionFontSize
+            ]
+            width:CaptionWidth
+            padding:CaptionPadding
+        ] : 0;
+    }
     else
     {
-        height = [CommentTableViewCell heightForRowWithString:[self commentForIndexPath:indexPath].text];
+        height = [LabelUtil
+            heightForRowWithString:[self commentForIndexPath:indexPath].text
+            font:[UIFont
+                fontWithName:AvenirNextRegularFont
+                size:CommentFontSize
+            ]
+            width:CommentWidth
+            padding:CommentUsernameMaxY + CommentBottomPadding
+        ];
     }
     
     return height;

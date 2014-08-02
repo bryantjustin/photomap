@@ -8,11 +8,13 @@
 
 #import "FeedViewController.h"
 
-#import "MediaDetailViewController.h"
+#import "CaptionTableViewCell.h"
 #import "FeedHeaderView.h"
 #import "InstagramComment.h"
 #import "InstagramMedia.h"
 #import "InstagramManager.h"
+#import "LabelUtil.h"
+#import "MediaDetailViewController.h"
 #import "MediaFeed.h"
 #import "MediaTableViewCell.h"
 
@@ -28,16 +30,18 @@ static NSInteger const RowsPerSection = 4;
 
 static CGFloat const SectionHeight      = 50;
 static CGFloat const RowMediaHeight     = 320.0;
-static CGFloat const RowCaptionHeight   = 75;
 static CGFloat const RowCommentHeight   = 30;
-static CGFloat const RowSpacerHeight    = 75;
+static CGFloat const RowSpacerHeight    = 100;
 static CGFloat const CommentRowFontSize = 12.;
 
-static NSString *const CaptionCellViewIdentifier        = @"CaptionCellViewIdentifier";
-static NSString *const CommentButtonCellViewIdentifier  = @"CommentButtonCellViewIdentifier";
-static NSString *const MediaCellViewIdentifier          = @"MediaCellViewIdentifier";
-static NSString *const SpacerCellViewIdentifier         = @"SpacerCellViewIdentifier";
+static NSString *const CaptionViewCellIdentifier        = @"CaptionViewCellIdentifier";
+static NSString *const CommentButtonViewCellIdentifier  = @"CommentButtonViewCellIdentifier";
+static NSString *const MediaViewCellIdentifier          = @"MediaViewCellIdentifier";
+static NSString *const SpacerViewCellIdentifier         = @"SpacerViewCellIdentifier";
 
+static CGFloat const CaptionFontSize    = 13.0;
+static CGFloat const CaptionPadding     = 15 * 2; // Top and bottom
+static CGFloat const CaptionWidth       = 290.0;
 
 @interface FeedViewController ()
 
@@ -153,7 +157,7 @@ static NSString *const SpacerCellViewIdentifier         = @"SpacerCellViewIdenti
         case RowTypeSpacer:
             viewCell = [[UITableViewCell alloc]
                 initWithStyle:UITableViewCellStyleDefault
-                reuseIdentifier:SpacerCellViewIdentifier
+                reuseIdentifier:SpacerViewCellIdentifier
             ];
             viewCell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
@@ -174,26 +178,34 @@ static NSString *const SpacerCellViewIdentifier         = @"SpacerCellViewIdenti
 
 - (UITableViewCell *)mediaTableViewCellForMedia:(InstagramMedia *)media
 {
-    MediaTableViewCell *mediaViewCell = (MediaTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:MediaCellViewIdentifier];
+    MediaTableViewCell *mediaViewCell = (MediaTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:MediaViewCellIdentifier];
     if (mediaViewCell == nil)
     {
         mediaViewCell = [MediaTableViewCell new];
-        mediaViewCell.reuseIdentifier = MediaCellViewIdentifier;
     }
-
     [mediaViewCell setMedia:media];
-
     return mediaViewCell;
+}
+
+- (UITableViewCell *)captionTableViewCellForMedia:(InstagramMedia *)media
+{
+    CaptionTableViewCell *captionViewCell = (CaptionTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CaptionViewCellIdentifier];
+    if (captionViewCell == nil)
+    {
+        captionViewCell = [CaptionTableViewCell new];
+    }
+    [captionViewCell setCaption:media.caption];
+    return captionViewCell;
 }
 
 - (UITableViewCell *)commentTableViewCellForMedia:(InstagramMedia *)media
 {
-    UITableViewCell *viewCell = [self.tableView dequeueReusableCellWithIdentifier:CommentButtonCellViewIdentifier];
+    UITableViewCell *viewCell = [self.tableView dequeueReusableCellWithIdentifier:CommentButtonViewCellIdentifier];
     if (viewCell == nil)
     {
         viewCell = [[UITableViewCell alloc]
             initWithStyle:UITableViewCellStyleDefault
-            reuseIdentifier:CommentButtonCellViewIdentifier
+            reuseIdentifier:CommentButtonViewCellIdentifier
         ];
         viewCell.textLabel.font = [UIFont
             fontWithName:AvenirNextDemiBoldFont
@@ -217,28 +229,6 @@ static NSString *const SpacerCellViewIdentifier         = @"SpacerCellViewIdenti
     
     return viewCell;
 }
-
-- (UITableViewCell *)captionTableViewCellForMedia:(InstagramMedia *)media
-{
-    UITableViewCell *viewCell = [self.tableView dequeueReusableCellWithIdentifier:CaptionCellViewIdentifier];
-    if (viewCell == nil)
-    {
-        viewCell = [[UITableViewCell alloc]
-            initWithStyle:UITableViewCellStyleDefault
-            reuseIdentifier:CaptionCellViewIdentifier
-        ];
-        viewCell.textLabel.font = [UIFont
-            fontWithName:AvenirRomanFont
-            size:CommentRowFontSize
-        ];
-        viewCell.textLabel.textColor = DarkGreyColor;
-        viewCell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    viewCell.textLabel.numberOfLines    = 3;
-    viewCell.textLabel.text             = media.caption.text;
-    return viewCell;
-}
-
 
 
 
@@ -283,7 +273,7 @@ static NSString *const SpacerCellViewIdentifier         = @"SpacerCellViewIdenti
     didEndDisplayingCell:(UITableViewCell *)cell
     forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([cell.reuseIdentifier isEqualToString:MediaCellViewIdentifier])
+    if ([cell.reuseIdentifier isEqualToString:MediaViewCellIdentifier])
     {
         MediaTableViewCell *mediaTableViewCell = (MediaTableViewCell *)cell;
         [mediaTableViewCell setMedia:nil];
@@ -300,6 +290,7 @@ static NSString *const SpacerCellViewIdentifier         = @"SpacerCellViewIdenti
     heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat heightForRow = 0.;
+    InstagramMedia *media = [self mediaFromIndexPath:indexPath];
     switch (indexPath.row)
     {
         case RowTypeMedia:
@@ -307,11 +298,19 @@ static NSString *const SpacerCellViewIdentifier         = @"SpacerCellViewIdenti
             break;
         
         case RowTypeCaption:
-            heightForRow = RowCaptionHeight;
+            heightForRow = [LabelUtil
+                heightForRowWithString:media.caption.text
+                font:[UIFont
+                    fontWithName:AvenirNextRegularFont
+                    size:CaptionFontSize
+                ]
+                width:CaptionWidth
+                padding:CaptionPadding
+            ];
             break;
             
         case RowTypeComments:
-            heightForRow = RowCommentHeight;
+            heightForRow = media.comments.count > 0 ? RowCommentHeight : 0;
             break;
             
         case RowTypeSpacer:
