@@ -371,7 +371,7 @@
                 
                 [_storeCoordinator
                     cacheMediaArrayResponse:dataResponse
-                    fromSelfFeed:YES
+                    fromSelfFeed:NO
                     withCompletion:^(NSArray *media, NSError *error)
                     {
                         if (error == nil)
