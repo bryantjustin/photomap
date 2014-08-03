@@ -133,7 +133,7 @@ static CGFloat const CaptionWidth       = 290.0;
 
 - (void)refreshFeed
 {
-    if (!_didRequestToUpdateFeed)
+    if (!_didRequestToUpdateFeed && self.feed)
     {
         _didRequestToUpdateFeed = YES;
         [InstagramManager.sharedManager

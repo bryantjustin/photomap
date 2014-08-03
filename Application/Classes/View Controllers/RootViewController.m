@@ -171,6 +171,17 @@ static NSString *const ProfileIcon  = @"profile-icon";
         initializeManagerWithCompletion:^(NSError *error)
         {
             [InstagramManager.sharedManager
+                getSelfUserDetailsWithSuccess:^(InstagramUser *user)
+                {
+                    [self.profileViewController setUser:user];
+                }
+                failure:^(NSError *error)
+                {
+                    
+                }
+            ];
+            
+            [InstagramManager.sharedManager
                 getSelfUserFeedWithSuccess:^(MediaFeed *feed)
                 {
                     [self.mapViewController setFeed:feed];
@@ -180,17 +191,6 @@ static NSString *const ProfileIcon  = @"profile-icon";
                 {
                 }
             ];
-        }
-    ];
-    
-    [InstagramManager.sharedManager
-        getSelfUserDetailsWithSuccess:^(InstagramUser *user)
-        {
-            [self.profileViewController setUser:user];
-        }
-        failure:^(NSError *error)
-        {
-            
         }
     ];
 }
