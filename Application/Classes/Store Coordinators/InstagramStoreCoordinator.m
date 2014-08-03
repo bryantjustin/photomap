@@ -242,7 +242,7 @@ static NSString *const CreatedDateEntityAttributeName   = @"createdDate";
         performBlock:^(void)
         {
             NSFetchRequest *fetchRequest = [NSFetchRequest new];
-            fetchRequest.resultType = NSManagedObjectResultType;
+            fetchRequest.resultType = NSManagedObjectIDResultType;
             [fetchRequest
                 setEntity:[NSEntityDescription
                     entityForName:InstagramUserEntityName

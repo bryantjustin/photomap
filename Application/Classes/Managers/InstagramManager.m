@@ -154,29 +154,48 @@
 - (void)getSelfUserDetailsWithSuccess:(InstagramManagerUserBlock)success
     failure:(InstagramManagerErrorBlock)failure;
 {
-    [_service
-        getSelfUserDetailsWithSuccess:^(id dataResponse)
-        {
-            [_storeCoordinator
-                cacheSelfUserDetailsResponse:dataResponse
-                withCompletion:^(InstagramUser *user, NSError *error)
+    if (self.shouldUseCache)
+    {
+        [_storeCoordinator
+            getSelfUserDetailsWithCompletion:^(InstagramUser *user, NSError *error)
+            {
+                if (error == nil)
                 {
-                    if (error == nil)
-                    {
-                        success(user);
-                    }
-                    else
-                    {
-                        failure(error);
-                    }
+                    success(user);
                 }
-            ];
-        }
-        failure:^(NSError *error)
-        {
-            failure(error);
-        }
-    ];
+                else
+                {
+                    failure(error);
+                }
+            }
+        ];
+    }
+    else
+    {
+        [_service
+            getSelfUserDetailsWithSuccess:^(id dataResponse)
+            {
+                [_storeCoordinator
+                    cacheSelfUserDetailsResponse:dataResponse
+                    withCompletion:^(InstagramUser *user, NSError *error)
+                    {
+                        if (error == nil)
+                        {
+                            success(user);
+                        }
+                        else
+                        {
+                            failure(error);
+                        }
+                    }
+                ];
+            }
+            failure:^(NSError *error)
+            {
+                failure(error);
+            }
+        ];
+    }
 }
 
 - (void)getSelfUserFeedWithSuccess:(InstagramManagerMediaFeedBlock)success
